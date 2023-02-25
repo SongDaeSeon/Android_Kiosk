@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:layout_margin="@dimen/pageMargin">
+
+    <Button android:text="아이스"
+        android:id="@+id/button_ice"
+        android:layout_width="fill_parent"
+        android:layout_height="0px"
+        android:layout_weight="1"
+        android:background="@color/yellow"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:fontFamily="@font/cafe"
+
+        android:textSize="@dimen/default_size">></Button>
+
+    <Button android:text="핫"
+        android:id="@+id/button_hot"
+        android:layout_width="fill_parent"
+        android:layout_height="0px"
+        android:layout_weight="1"
+        android:background="@color/purple"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:fontFamily="@font/cafe"
+        android:textSize="@dimen/default_size"
+        android:layout_marginTop="@dimen/pageMargin"></Button>
+
+</LinearLayout>

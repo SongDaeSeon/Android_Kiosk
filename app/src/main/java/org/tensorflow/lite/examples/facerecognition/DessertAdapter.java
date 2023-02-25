@@ -17,6 +17,7 @@ import org.tensorflow.lite.examples.facerecognition.fragments.DessertMenuFragmen
 import org.tensorflow.lite.examples.facerecognition.fragments.DessertMenuFragment.CroquemonsieurFragment;
 import org.tensorflow.lite.examples.facerecognition.fragments.DessertMenuFragment.MochaBunFragment;
 import org.tensorflow.lite.examples.facerecognition.fragments.DessertMenuFragment.NewYorkCheeseCakeFragment;
+import org.tensorflow.lite.examples.facerecognition.fragments.DessertMenuFragment.NoDessertFragment;
 import org.tensorflow.lite.examples.facerecognition.fragments.DessertMenuFragment.PlainMuffinFragment;
 import org.tensorflow.lite.examples.facerecognition.fragments.DessertMenuFragment.RaspberryMacaronFragment;
 import org.tensorflow.lite.examples.facerecognition.fragments.DessertMenuFragment.VanillaMacaronFragment;
@@ -50,7 +51,8 @@ public class DessertAdapter extends FragmentStateAdapter {
         else if (index == 11) return new ChocoMacaronFragment();
         else if (index == 12) return new ChocoTiramisuCakeFragment();
         else if (index == 13) return new ChocoMousseCakeFragment();
-        else return new NewYorkCheeseCakeFragment();
+        else if (index == 14) return new NewYorkCheeseCakeFragment();
+        else return new NoDessertFragment();
 
     }
 

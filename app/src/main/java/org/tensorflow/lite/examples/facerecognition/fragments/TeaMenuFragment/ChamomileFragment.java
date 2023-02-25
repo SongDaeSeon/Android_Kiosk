@@ -1,10 +1,13 @@
 package org.tensorflow.lite.examples.facerecognition.fragments.TeaMenuFragment;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
+import android.speech.tts.TextToSpeech;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.style.ForegroundColorSpan;
@@ -15,10 +18,15 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import org.tensorflow.lite.examples.facerecognition.R;
+import org.tensorflow.lite.examples.facerecognition.SelectIceHotActivity;
+import org.tensorflow.lite.examples.facerecognition.SelectWhereActivity;
+import org.tensorflow.lite.examples.facerecognition.fragments.LatteMenuFragment.BlackteaLatteFragment;
+
+import java.util.Locale;
 
 
 public class ChamomileFragment extends Fragment {
-
+    private TextToSpeech tts;
     private Button chamomile_btn;
 
     @Override
@@ -29,6 +37,29 @@ public class ChamomileFragment extends Fragment {
 
         chamomile_btn = v.findViewById(R.id.chamomile_btn);
 
+        chamomile_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String text = "캐모마일 2000원";
+                Locale locale = Locale.getDefault();
+                tts.setLanguage(locale);
+                tts.speak(text, TextToSpeech.QUEUE_FLUSH, null, "id1");
+            }
+        });
+
+        chamomile_btn.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                Intent intent = new Intent(getActivity(), SelectIceHotActivity.class);
+                startActivity(intent);
+
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                fragmentManager.beginTransaction().remove(ChamomileFragment.this).commit();
+                fragmentManager.popBackStack();
+
+                return true;
+            }
+        });
         String content = chamomile_btn.getText().toString();
         SpannableString spannableString = new SpannableString(content);
 
@@ -50,5 +81,32 @@ public class ChamomileFragment extends Fragment {
         chamomile_btn.setText(spannableString);
 
         return v;
+    }
+    @Override
+    public void onResume() {
+        super.onResume();
+        tts = new TextToSpeech(getActivity(), new TextToSpeech.OnInitListener() {
+            @Override
+            public void onInit(int status) {
+                chamomile_btn.setEnabled(true);
+                Locale locale = Locale.getDefault();
+                tts.setLanguage(locale);
+
+                String text = "캐모마일 2000원";
+                tts.speak(text, TextToSpeech.QUEUE_FLUSH, null, "id1");
+
+            }
+        });
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if(tts != null){
+            tts.stop();
+            tts.shutdown();
+            tts = null;
+        }
+        super.onDestroy();
     }
 }

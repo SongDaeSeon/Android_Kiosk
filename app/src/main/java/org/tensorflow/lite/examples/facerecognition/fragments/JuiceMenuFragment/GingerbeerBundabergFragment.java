@@ -1,10 +1,13 @@
 package org.tensorflow.lite.examples.facerecognition.fragments.JuiceMenuFragment;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
+import android.speech.tts.TextToSpeech;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.style.ForegroundColorSpan;
@@ -15,9 +18,12 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import org.tensorflow.lite.examples.facerecognition.R;
+import org.tensorflow.lite.examples.facerecognition.SelectWhereActivity;
+
+import java.util.Locale;
 
 public class GingerbeerBundabergFragment extends Fragment {
-
+    private TextToSpeech tts;
     private Button gingerbeer_bundaberg_btn;
 
     @Override
@@ -28,6 +34,28 @@ public class GingerbeerBundabergFragment extends Fragment {
 
         gingerbeer_bundaberg_btn = v.findViewById(R.id.gingerbeer_bundaberg_btn);
 
+        gingerbeer_bundaberg_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String text = "진져비어 분다버그 3500원";
+                Locale locale = Locale.getDefault();
+                tts.setLanguage(locale);
+                tts.speak(text, TextToSpeech.QUEUE_FLUSH, null, "id1");
+            }
+        });
+        gingerbeer_bundaberg_btn.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                Intent intent = new Intent(getActivity(), SelectWhereActivity.class);
+                startActivity(intent);
+
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                fragmentManager.beginTransaction().remove(GingerbeerBundabergFragment.this).commit();
+                fragmentManager.popBackStack();
+
+                return true;
+            }
+        });
         String content = gingerbeer_bundaberg_btn.getText().toString();
         SpannableString spannableString = new SpannableString(content);
 
@@ -49,5 +77,32 @@ public class GingerbeerBundabergFragment extends Fragment {
         gingerbeer_bundaberg_btn.setText(spannableString);
 
         return v;
+    }
+    @Override
+    public void onResume() {
+        super.onResume();
+        tts = new TextToSpeech(getActivity(), new TextToSpeech.OnInitListener() {
+            @Override
+            public void onInit(int status) {
+                gingerbeer_bundaberg_btn.setEnabled(true);
+                Locale locale = Locale.getDefault();
+                tts.setLanguage(locale);
+
+                String text = "진저비어 분다버그 3500원";
+                tts.speak(text, TextToSpeech.QUEUE_FLUSH, null, "id1");
+
+            }
+        });
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if(tts != null){
+            tts.stop();
+            tts.shutdown();
+            tts = null;
+        }
+        super.onDestroy();
     }
 }

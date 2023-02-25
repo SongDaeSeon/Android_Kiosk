@@ -1,10 +1,13 @@
 package org.tensorflow.lite.examples.facerecognition.fragments.AdeMenuFragment;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
+import android.speech.tts.TextToSpeech;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.style.ForegroundColorSpan;
@@ -15,10 +18,14 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import org.tensorflow.lite.examples.facerecognition.R;
+import org.tensorflow.lite.examples.facerecognition.SelectWhereActivity;
+import org.tensorflow.lite.examples.facerecognition.fragments.CoffeeMenuFragment.AmericanoFragment;
+
+import java.util.Locale;
 
 
 public class GrapefruitAdeFragment extends Fragment {
-
+    private TextToSpeech tts;
     private Button grapefruit_ade_btn;
 
     @Override
@@ -29,6 +36,30 @@ public class GrapefruitAdeFragment extends Fragment {
         View v = (ViewGroup) inflater.inflate(R.layout.fragment_grapefruit_ade, container, false);
 
         grapefruit_ade_btn = v.findViewById(R.id.grapefruit_ade_btn);
+
+        grapefruit_ade_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String text = "자몽에이드 3000원";
+                Locale locale = Locale.getDefault();
+                tts.setLanguage(locale);
+                tts.speak(text, TextToSpeech.QUEUE_FLUSH, null, "id1");
+            }
+        });
+
+        grapefruit_ade_btn.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                Intent intent = new Intent(getActivity(), SelectWhereActivity.class);
+                startActivity(intent);
+
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                fragmentManager.beginTransaction().remove(GrapefruitAdeFragment.this).commit();
+                fragmentManager.popBackStack();
+
+                return true;
+            }
+        });
 
         String content = grapefruit_ade_btn.getText().toString();
         SpannableString spannableString = new SpannableString(content);
@@ -51,5 +82,32 @@ public class GrapefruitAdeFragment extends Fragment {
         grapefruit_ade_btn.setText(spannableString);
 
         return v;
+    }
+    @Override
+    public void onResume() {
+        super.onResume();
+        tts = new TextToSpeech(getActivity(), new TextToSpeech.OnInitListener() {
+            @Override
+            public void onInit(int status) {
+                grapefruit_ade_btn.setEnabled(true);
+                Locale locale = Locale.getDefault();
+                tts.setLanguage(locale);
+
+                String text = "자몽에이드 3000원";
+                tts.speak(text, TextToSpeech.QUEUE_FLUSH, null, "id1");
+
+            }
+        });
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if(tts != null){
+            tts.stop();
+            tts.shutdown();
+            tts = null;
+        }
+        super.onDestroy();
     }
 }

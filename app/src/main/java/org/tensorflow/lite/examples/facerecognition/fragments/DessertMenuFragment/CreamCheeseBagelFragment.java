@@ -1,10 +1,13 @@
 package org.tensorflow.lite.examples.facerecognition.fragments.DessertMenuFragment;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
+import android.speech.tts.TextToSpeech;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.style.ForegroundColorSpan;
@@ -15,9 +18,12 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import org.tensorflow.lite.examples.facerecognition.R;
+import org.tensorflow.lite.examples.facerecognition.SelectWhereActivity;
+
+import java.util.Locale;
 
 public class CreamCheeseBagelFragment extends Fragment {
-
+    private TextToSpeech tts;
     private Button cream_cheese_bagel_btn;
 
     @Override
@@ -28,6 +34,29 @@ public class CreamCheeseBagelFragment extends Fragment {
 
         cream_cheese_bagel_btn = v.findViewById(R.id.cream_cheese_bagel_btn);
 
+        cream_cheese_bagel_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String text = "크림치즈 베이글 2800원";
+                Locale locale = Locale.getDefault();
+                tts.setLanguage(locale);
+                tts.speak(text, TextToSpeech.QUEUE_FLUSH, null, "id1");
+            }
+        });
+
+        cream_cheese_bagel_btn.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                Intent intent = new Intent(getActivity(), SelectWhereActivity.class);
+                startActivity(intent);
+
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                fragmentManager.beginTransaction().remove(CreamCheeseBagelFragment.this).commit();
+                fragmentManager.popBackStack();
+
+                return true;
+            }
+        });
         String content = cream_cheese_bagel_btn.getText().toString();
         SpannableString spannableString = new SpannableString(content);
 
@@ -49,5 +78,32 @@ public class CreamCheeseBagelFragment extends Fragment {
         cream_cheese_bagel_btn.setText(spannableString);
 
         return v;
+    }
+    @Override
+    public void onResume() {
+        super.onResume();
+        tts = new TextToSpeech(getActivity(), new TextToSpeech.OnInitListener() {
+            @Override
+            public void onInit(int status) {
+                cream_cheese_bagel_btn.setEnabled(true);
+                Locale locale = Locale.getDefault();
+                tts.setLanguage(locale);
+
+                String text = "크림치즈 베이글 2800원";
+                tts.speak(text, TextToSpeech.QUEUE_FLUSH, null, "id1");
+
+            }
+        });
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if(tts != null){
+            tts.stop();
+            tts.shutdown();
+            tts = null;
+        }
+        super.onDestroy();
     }
 }

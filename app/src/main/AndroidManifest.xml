@@ -18,6 +18,14 @@
         android:theme="@style/Theme.AppCompat"
         tools:ignore="AllowBackup">
         <activity
+            android:name=".SelectIceHotActivity"
+            android:exported="true"
+            android:theme="@style/FullScreenTheme">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".DessertActivity"
             android:exported="true"
             android:theme="@style/FullScreenTheme">

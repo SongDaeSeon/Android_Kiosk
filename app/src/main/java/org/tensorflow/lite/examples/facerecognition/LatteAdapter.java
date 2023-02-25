@@ -8,6 +8,7 @@ import androidx.viewpager2.adapter.FragmentStateAdapter;
 import org.tensorflow.lite.examples.facerecognition.fragments.LatteMenuFragment.BlackteaLatteFragment;
 import org.tensorflow.lite.examples.facerecognition.fragments.LatteMenuFragment.ChocolateLatteFragment;
 import org.tensorflow.lite.examples.facerecognition.fragments.LatteMenuFragment.GreenteaLatteFragment;
+import org.tensorflow.lite.examples.facerecognition.fragments.LatteMenuFragment.NoLatteFragment;
 import org.tensorflow.lite.examples.facerecognition.fragments.LatteMenuFragment.StrawberryLatteFragment;
 import org.tensorflow.lite.examples.facerecognition.fragments.LatteMenuFragment.SweetPotatoLatteFragment;
 import org.tensorflow.lite.examples.facerecognition.fragments.LatteMenuFragment.ToffeenutLatteFragment;
@@ -32,7 +33,8 @@ public class LatteAdapter extends FragmentStateAdapter {
         else if (index == 2) return new BlackteaLatteFragment();
         else if (index == 3) return new SweetPotatoLatteFragment();
         else if (index == 4) return new ToffeenutLatteFragment();
-        else return new StrawberryLatteFragment();
+        else if (index == 5) return new StrawberryLatteFragment();
+        else return new NoLatteFragment();
     }
 
     private int getRealPosition(int position) {

@@ -8,6 +8,7 @@ import androidx.viewpager2.adapter.FragmentStateAdapter;
 import org.tensorflow.lite.examples.facerecognition.fragments.AdeMenuFragment.GrapefruitAdeFragment;
 import org.tensorflow.lite.examples.facerecognition.fragments.AdeMenuFragment.GreenGrapeAdeFragment;
 import org.tensorflow.lite.examples.facerecognition.fragments.AdeMenuFragment.LemonAdeFragment;
+import org.tensorflow.lite.examples.facerecognition.fragments.AdeMenuFragment.NoAdeFragment;
 import org.tensorflow.lite.examples.facerecognition.fragments.AdeMenuFragment.StrawberryLemonAdeFragment;
 
 public class AdeAdapter extends FragmentStateAdapter {
@@ -28,7 +29,8 @@ public class AdeAdapter extends FragmentStateAdapter {
         if (index == 0) return new LemonAdeFragment();
         else if (index == 1) return new GrapefruitAdeFragment();
         else if (index == 2) return new GreenGrapeAdeFragment();
-        else return new StrawberryLemonAdeFragment();
+        else if (index == 3) return new StrawberryLemonAdeFragment();
+        else return new NoAdeFragment();
     }
 
     private int getRealPosition(int position) {

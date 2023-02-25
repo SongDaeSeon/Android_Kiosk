@@ -9,6 +9,7 @@ import org.tensorflow.lite.examples.facerecognition.fragments.JuiceMenuFragment.
 import org.tensorflow.lite.examples.facerecognition.fragments.JuiceMenuFragment.BananaJuiceFragment;
 import org.tensorflow.lite.examples.facerecognition.fragments.JuiceMenuFragment.GingerbeerBundabergFragment;
 import org.tensorflow.lite.examples.facerecognition.fragments.JuiceMenuFragment.LemonLimeBundabergFragment;
+import org.tensorflow.lite.examples.facerecognition.fragments.JuiceMenuFragment.NoJuiceFragment;
 import org.tensorflow.lite.examples.facerecognition.fragments.JuiceMenuFragment.OrangeJuiceFragment;
 import org.tensorflow.lite.examples.facerecognition.fragments.JuiceMenuFragment.PerrierCarbonatedWaterFragment;
 import org.tensorflow.lite.examples.facerecognition.fragments.JuiceMenuFragment.PinkBundabergFragment;
@@ -36,7 +37,8 @@ public class JuiceAdapter extends FragmentStateAdapter {
         else if (index == 4) return  new PinkBundabergFragment();
         else if (index == 5) return new LemonLimeBundabergFragment();
         else if (index == 6) return new GingerbeerBundabergFragment();
-        else return new PerrierCarbonatedWaterFragment();
+        else if (index == 7) return new PerrierCarbonatedWaterFragment();
+        else return new NoJuiceFragment();
 
     }
 

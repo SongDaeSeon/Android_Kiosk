@@ -1,10 +1,13 @@
 package org.tensorflow.lite.examples.facerecognition.fragments.DessertMenuFragment;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
+import android.speech.tts.TextToSpeech;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.style.ForegroundColorSpan;
@@ -15,10 +18,14 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import org.tensorflow.lite.examples.facerecognition.R;
+import org.tensorflow.lite.examples.facerecognition.SelectWhereActivity;
+import org.tensorflow.lite.examples.facerecognition.fragments.AdeMenuFragment.GrapefruitAdeFragment;
+
+import java.util.Locale;
 
 
 public class BlueberryMuffinFragment extends Fragment {
-
+    private TextToSpeech tts;
     private Button blueberry_muffin_btn;
 
     @Override
@@ -29,6 +36,29 @@ public class BlueberryMuffinFragment extends Fragment {
 
         blueberry_muffin_btn = v.findViewById(R.id.blueberry_muffin_btn);
 
+        blueberry_muffin_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String text = "블루베리머핀 1800원";
+                Locale locale = Locale.getDefault();
+                tts.setLanguage(locale);
+                tts.speak(text, TextToSpeech.QUEUE_FLUSH, null, "id1");
+            }
+        });
+
+        blueberry_muffin_btn.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                Intent intent = new Intent(getActivity(), SelectWhereActivity.class);
+                startActivity(intent);
+
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                fragmentManager.beginTransaction().remove(BlueberryMuffinFragment.this).commit();
+                fragmentManager.popBackStack();
+
+                return true;
+            }
+        });
         String content = blueberry_muffin_btn.getText().toString();
         SpannableString spannableString = new SpannableString(content);
 
@@ -50,5 +80,32 @@ public class BlueberryMuffinFragment extends Fragment {
         blueberry_muffin_btn.setText(spannableString);
 
         return v;
+    }
+    @Override
+    public void onResume() {
+        super.onResume();
+        tts = new TextToSpeech(getActivity(), new TextToSpeech.OnInitListener() {
+            @Override
+            public void onInit(int status) {
+                blueberry_muffin_btn.setEnabled(true);
+                Locale locale = Locale.getDefault();
+                tts.setLanguage(locale);
+
+                String text = "블루베리머핀 1800원";
+                tts.speak(text, TextToSpeech.QUEUE_FLUSH, null, "id1");
+
+            }
+        });
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if(tts != null){
+            tts.stop();
+            tts.shutdown();
+            tts = null;
+        }
+        super.onDestroy();
     }
 }

@@ -53,7 +53,6 @@ public class CoffeeFragment extends Fragment {
                 fragmentManager.beginTransaction().remove(CoffeeFragment.this).commit();
                 fragmentManager.popBackStack();
 
-
                 return true;  //true 설정
             }
         });
@@ -61,7 +60,6 @@ public class CoffeeFragment extends Fragment {
         return v;
 
     }
-
     @Override
     public void onResume() {
         super.onResume();

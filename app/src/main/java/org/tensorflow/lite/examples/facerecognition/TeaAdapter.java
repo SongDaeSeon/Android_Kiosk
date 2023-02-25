@@ -11,6 +11,7 @@ import org.tensorflow.lite.examples.facerecognition.fragments.TeaMenuFragment.Gr
 import org.tensorflow.lite.examples.facerecognition.fragments.TeaMenuFragment.HibiscusFragment;
 import org.tensorflow.lite.examples.facerecognition.fragments.TeaMenuFragment.LemonIcedTeaFragment;
 import org.tensorflow.lite.examples.facerecognition.fragments.TeaMenuFragment.LemonTeaFragment;
+import org.tensorflow.lite.examples.facerecognition.fragments.TeaMenuFragment.NoTeaFragment;
 import org.tensorflow.lite.examples.facerecognition.fragments.TeaMenuFragment.PeachIcedTeaAddShotFragment;
 import org.tensorflow.lite.examples.facerecognition.fragments.TeaMenuFragment.PeachIcedTeaFragment;
 import org.tensorflow.lite.examples.facerecognition.fragments.TeaMenuFragment.PeppermintFragment;
@@ -40,7 +41,8 @@ public class TeaAdapter extends FragmentStateAdapter {
         else if (index == 6) return new PeppermintFragment();
         else if (index == 7) return new LemonIcedTeaFragment();
         else if (index == 8) return new PeachIcedTeaFragment();
-        else return new PeachIcedTeaAddShotFragment();
+        else if (index == 9) return new PeachIcedTeaAddShotFragment();
+        else return new NoTeaFragment();
 
     }
 

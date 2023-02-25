@@ -6,6 +6,7 @@ import androidx.fragment.app.FragmentActivity;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
 import org.tensorflow.lite.examples.facerecognition.fragments.SmoothieMenuFragment.BlueberrySmoothieFragment;
+import org.tensorflow.lite.examples.facerecognition.fragments.SmoothieMenuFragment.NoSmoothieFragment;
 import org.tensorflow.lite.examples.facerecognition.fragments.SmoothieMenuFragment.StrawberrySmoothieFragment;
 import org.tensorflow.lite.examples.facerecognition.fragments.SmoothieMenuFragment.YogurtSmoothieFragment;
 
@@ -26,7 +27,8 @@ public class SmoothieAdapter extends FragmentStateAdapter {
 
         if (index == 0) return new StrawberrySmoothieFragment();
         else if (index == 1) return new BlueberrySmoothieFragment();
-        else return new YogurtSmoothieFragment();
+        else if (index == 2) return new YogurtSmoothieFragment();
+        else return new NoSmoothieFragment();
 
     }
 

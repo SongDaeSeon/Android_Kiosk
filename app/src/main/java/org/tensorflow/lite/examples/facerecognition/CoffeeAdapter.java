@@ -16,6 +16,7 @@ import org.tensorflow.lite.examples.facerecognition.fragments.CoffeeMenuFragment
 import org.tensorflow.lite.examples.facerecognition.fragments.CoffeeMenuFragment.EspressoFragment;
 import org.tensorflow.lite.examples.facerecognition.fragments.CoffeeMenuFragment.HazelnutFragment;
 import org.tensorflow.lite.examples.facerecognition.fragments.CoffeeMenuFragment.HazelnutLatteFragment;
+import org.tensorflow.lite.examples.facerecognition.fragments.CoffeeMenuFragment.NoCoffeeFragment;
 import org.tensorflow.lite.examples.facerecognition.fragments.CoffeeMenuFragment.VanillaLatteFragment;
 
 public class CoffeeAdapter extends FragmentStateAdapter {
@@ -42,7 +43,8 @@ public class CoffeeAdapter extends FragmentStateAdapter {
         else if (index == 6) return new HazelnutLatteFragment();
         else if (index == 7) return new CaramelMacchiatoFragment();
         else if (index == 8) return new CafeMochaFragment();
-        else return new DolceLatteFragment();
+        else if (index == 9) return new DolceLatteFragment();
+        else return new NoCoffeeFragment();
 
     }
 
