@@ -2,17 +2,29 @@ package org.tensorflow.lite.examples.facerecognition;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
 import android.speech.tts.TextToSpeech;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.Locale;
 
 public class SelectIceHotActivity extends AppCompatActivity {
+
+    private static String IP_ADDRESS = "192.168.0.14";//ip주소 업데이트 계속 해줘야함
+    private static String TAG = "phptest";
 
     private TextToSpeech tts;
     private Button button_ice;
@@ -21,6 +33,12 @@ public class SelectIceHotActivity extends AppCompatActivity {
     //일정 시간 터치 없을시 자동 처음 화면 돌아가기 위한 코드
     private int count = TimerCount.COUNT;
     private CountDownTimer countDownTimer;
+
+
+//    String p_count = "1";
+//    String p_price = "1";
+//    String p_receipt = "1";
+//    String p_menu = "1" ;
 
     Handler handler = new Handler();
     @Override
@@ -73,6 +91,7 @@ public class SelectIceHotActivity extends AppCompatActivity {
         button_ice.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View view) {
+
                 Intent intent = new Intent(SelectIceHotActivity.this, SelectWhereActivity.class);
                 startActivity(intent);
                 finish();
@@ -134,4 +153,6 @@ public class SelectIceHotActivity extends AppCompatActivity {
 
         super.onDestroy();
     }
+
+
 }

@@ -7,6 +7,7 @@
     <dist:module dist:instant="true" /> <!-- Declare features -->
     <uses-feature android:name="android.hardware.camera" /> <!-- Declare permissions -->
     <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -15,6 +16,7 @@
         android:roundIcon="@mipmap/ic_launcher_cafe_round"
         android:supportsRtl="true"
         android:taskAffinity=""
+        android:usesCleartextTraffic="true"
         android:theme="@style/Theme.AppCompat"
         tools:ignore="AllowBackup">
         <activity
