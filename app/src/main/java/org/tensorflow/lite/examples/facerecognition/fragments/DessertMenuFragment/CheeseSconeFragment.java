@@ -18,6 +18,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import org.tensorflow.lite.examples.facerecognition.R;
+import org.tensorflow.lite.examples.facerecognition.SelectModeActivity;
 import org.tensorflow.lite.examples.facerecognition.SelectWhereActivity;
 
 import java.util.Locale;
@@ -47,7 +48,7 @@ public class CheeseSconeFragment extends Fragment {
         cheese_scone_btn.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View view) {
-                Intent intent = new Intent(getActivity(), SelectWhereActivity.class);
+                Intent intent = new Intent(getActivity(), SelectModeActivity.class);
                 startActivity(intent);
 
                 FragmentManager fragmentManager = getActivity().getSupportFragmentManager();

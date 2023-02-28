@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:layout_margin="@dimen/pageMargin"
+    tools:context=".fragments.ModeFragment.BasketFragment">
+
+    <Button
+        android:id="@+id/basket_btn"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_weight="1"
+        android:text="장바구니"
+        android:background="@color/yellow"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:fontFamily="@font/cafe"
+        android:textSize="@dimen/default_size">
+    </Button>
+
+</LinearLayout>

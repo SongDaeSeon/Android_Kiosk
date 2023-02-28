@@ -78,9 +78,6 @@ public class SelectIceHotActivity extends AppCompatActivity {
             public void onClick(View view) {
                 handler.removeMessages(0);
 
-                //일정 시간 터치 없을시 자동 처음 화면 돌아가기 위한 코드
-                countDownTimer.cancel();
-                countDownTimer.start();
                 String text = "아이스";
                 Locale locale = Locale.getDefault();
                 tts.setLanguage(locale);
@@ -92,7 +89,8 @@ public class SelectIceHotActivity extends AppCompatActivity {
             @Override
             public boolean onLongClick(View view) {
 
-                Intent intent = new Intent(SelectIceHotActivity.this, SelectWhereActivity.class);
+                handler.removeMessages(0);
+                Intent intent = new Intent(SelectIceHotActivity.this, SelectModeActivity.class);
                 startActivity(intent);
                 finish();
                 return true;  //true 설정
@@ -104,9 +102,6 @@ public class SelectIceHotActivity extends AppCompatActivity {
             public void onClick(View view) {
                 handler.removeMessages(0);
 
-                //일정 시간 터치 없을시 자동 처음 화면 돌아가기 위한 코드
-                countDownTimer.cancel();
-                countDownTimer.start();
                 String text = "핫";
                 Locale locale = Locale.getDefault();
                 tts.setLanguage(locale);
@@ -117,7 +112,9 @@ public class SelectIceHotActivity extends AppCompatActivity {
         button_hot.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View view) {
-                Intent intent = new Intent(SelectIceHotActivity.this, SelectWhereActivity.class);
+                handler.removeMessages(0);
+
+                Intent intent = new Intent(SelectIceHotActivity.this, SelectModeActivity.class);
                 startActivity(intent);
                 finish();
                 return true;  //true 설정
@@ -138,6 +135,25 @@ public class SelectIceHotActivity extends AppCompatActivity {
             }
         };
     }
+
+    @Override
+    protected void onPause() {
+
+        if (tts != null) {
+            tts.stop();
+            tts.shutdown();
+        }
+
+        //일정 시간 터치 없을시 자동 처음 화면 돌아가기 위한 코드
+        try{
+            countDownTimer.cancel();
+        } catch (Exception e) {}
+        countDownTimer=null;
+
+        super.onPause();
+    }
+
+
     @Override
     protected void onDestroy() {
         if (tts != null) {

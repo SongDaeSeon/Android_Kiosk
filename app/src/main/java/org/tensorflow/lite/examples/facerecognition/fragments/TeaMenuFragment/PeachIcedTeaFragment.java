@@ -18,6 +18,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import org.tensorflow.lite.examples.facerecognition.R;
+import org.tensorflow.lite.examples.facerecognition.SelectModeActivity;
 import org.tensorflow.lite.examples.facerecognition.SelectWhereActivity;
 import org.tensorflow.lite.examples.facerecognition.fragments.LatteMenuFragment.BlackteaLatteFragment;
 
@@ -48,7 +49,7 @@ public class PeachIcedTeaFragment extends Fragment {
         peach_iced_tea_btn.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View view) {
-                Intent intent = new Intent(getActivity(), SelectWhereActivity.class);
+                Intent intent = new Intent(getActivity(), SelectModeActivity.class);
                 startActivity(intent);
 
                 FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
