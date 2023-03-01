@@ -7,26 +7,26 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.speech.tts.TextToSpeech;
 import android.widget.Button;
+
 import java.util.Locale;
 
-public class PayActivity extends AppCompatActivity {
+public class FinishActivity extends AppCompatActivity {
 
     private TextToSpeech tts;
-    private Button pay_btn1;
+    private Button fin_btn;
 
     Handler handler = new Handler();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_pay);
+        setContentView(R.layout.activity_finish);
 
-        pay_btn1 = (Button) findViewById(R.id.pay_btn1);
-
+        fin_btn = (Button) findViewById(R.id.fin_btn);
         tts = new TextToSpeech(this, new TextToSpeech.OnInitListener() {
             @Override
             public void onInit(int status) {
-                pay_btn1.setEnabled(true);
-                String text = "카드를 넣어주세요";
+                fin_btn.setEnabled(true);
+                String text = "결제가 완료 되었습니다.";
                 Locale locale = Locale.getDefault();
                 tts.setLanguage(locale);
                 tts.speak(text, TextToSpeech.QUEUE_FLUSH, null, "id1");
@@ -35,13 +35,12 @@ public class PayActivity extends AppCompatActivity {
                 {
                     @Override
                     public void run() {
-                        Intent intent = new Intent(PayActivity.this, FinishActivity.class);
+                        Intent intent = new Intent(FinishActivity.this, MainActivity.class);
                         startActivity(intent);
                         finish();
                     }
-                }, 10000);
+                }, 10000);// 18초 정도 딜레이를 준 후 반응 없으면 main으로 돌아감
             }
         });
-
     }
 }

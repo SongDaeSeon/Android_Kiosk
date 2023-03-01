@@ -1,8 +1,10 @@
 package org.tensorflow.lite.examples.facerecognition.fragments.ModeFragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 import android.speech.tts.TextToSpeech;
 import android.view.LayoutInflater;
@@ -10,7 +12,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import org.tensorflow.lite.examples.facerecognition.PayActivity;
 import org.tensorflow.lite.examples.facerecognition.R;
+import org.tensorflow.lite.examples.facerecognition.SelectModeActivity;
+import org.tensorflow.lite.examples.facerecognition.fragments.JuiceMenuFragment.AppleJuiceFragment;
 
 import java.util.Locale;
 
@@ -38,7 +43,19 @@ public class PayFragment extends Fragment {
             }
         });
 
+        pay_btn.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                Intent intent = new Intent(getActivity(), PayActivity.class);
+                startActivity(intent);
 
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                fragmentManager.beginTransaction().remove(PayFragment.this).commit();
+                fragmentManager.popBackStack();
+
+                return true;
+            }
+        });
 
         return v;
     }

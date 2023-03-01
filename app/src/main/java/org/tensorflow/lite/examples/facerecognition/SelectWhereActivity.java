@@ -1,7 +1,9 @@
 package org.tensorflow.lite.examples.facerecognition;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.media.AudioManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -79,6 +81,9 @@ public class SelectWhereActivity extends AppCompatActivity {
                 Locale locale = Locale.getDefault();
                 tts.setLanguage(locale);
                 tts.speak(text, TextToSpeech.QUEUE_FLUSH, null, "id1");
+
+                AudioManager audioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
+                audioManager.setStreamVolume(AudioManager.STREAM_MUSIC, 15, 0);
 
                 handler.postDelayed(new Runnable()
                 {

@@ -1,6 +1,8 @@
 package org.tensorflow.lite.examples.facerecognition;
 
+import android.content.Context;
 import android.content.Intent;
+import android.media.AudioManager;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
@@ -15,6 +17,7 @@ import java.util.Locale;
 public class StartActivity extends AppCompatActivity {
     private TextToSpeech tts;              // TTS 변수 선언
     private Button button0;
+
 
     //일정 시간 터치 없을시 자동 처음 화면 돌아가기 위한 코드
     private int count = TimerCount.COUNT;
@@ -41,6 +44,8 @@ public class StartActivity extends AppCompatActivity {
                 tts.setLanguage(locale);
                 tts.speak(text, TextToSpeech.QUEUE_FLUSH, null, "id1");
 
+                AudioManager audioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
+                audioManager.setStreamVolume(AudioManager.STREAM_MUSIC, 5, 0);
 
                 handler.postDelayed(new Runnable()
                 {
