@@ -11,6 +11,8 @@ import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.View;
 
+import org.tensorflow.lite.examples.facerecognition.Adapter.LatteAdapter;
+
 import me.relex.circleindicator.CircleIndicator3;
 
 public class LatteActivity extends AppCompatActivity {
@@ -29,7 +31,7 @@ public class LatteActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_latte);
 
-        //ViewPager2
+      //ViewPager2
         mPager = findViewById(R.id.latte_viewpager);
         //Adapter
         pagerAdapter = new LatteAdapter(this, num_page);

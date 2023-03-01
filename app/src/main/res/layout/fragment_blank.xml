@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    android:layout_margin="@dimen/pageMargin"
+    tools:context=".BlankFragment">
+
+    <Button
+        android:id="@+id/blank_btn"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_weight="1"
+        android:text="디비에서\n긁어오기"
+        android:lineSpacingExtra="@dimen/linespace"
+        android:background="@color/yellow"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:fontFamily="@font/cafe"
+        android:bufferType="spannable"
+        android:textSize="@dimen/default_size">
+    </Button>
+
+</LinearLayout>

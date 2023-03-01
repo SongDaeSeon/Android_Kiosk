@@ -30,6 +30,8 @@ import java.util.Locale;
 public class AmericanoFragment extends Fragment {
     private TextToSpeech tts;
     private Button americane_btn;
+    String text = "아메리카노 1500원";
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -41,7 +43,7 @@ public class AmericanoFragment extends Fragment {
         americane_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String text = "아메리카노 1500원";
+
                 Locale locale = Locale.getDefault();
                 tts.setLanguage(locale);
                 tts.speak(text, TextToSpeech.QUEUE_FLUSH, null, "id1");
@@ -52,6 +54,9 @@ public class AmericanoFragment extends Fragment {
             @Override
             public boolean onLongClick(View view) {
                 Intent intent = new Intent(getActivity(), SelectIceHotActivity.class);
+                //데이터 보내기
+                intent.putExtra("menu", "아메리카노");
+                intent.putExtra("price", "1500");
                 startActivity(intent);
 
                 FragmentManager fragmentManager = getActivity().getSupportFragmentManager();

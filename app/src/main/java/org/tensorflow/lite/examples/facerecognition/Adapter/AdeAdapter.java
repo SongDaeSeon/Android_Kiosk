@@ -1,4 +1,4 @@
-package org.tensorflow.lite.examples.facerecognition;
+package org.tensorflow.lite.examples.facerecognition.Adapter;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;

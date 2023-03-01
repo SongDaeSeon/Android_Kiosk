@@ -11,6 +11,8 @@ import androidx.fragment.app.FragmentActivity;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 import androidx.viewpager2.widget.ViewPager2;
 
+import org.tensorflow.lite.examples.facerecognition.Adapter.Myadapter;
+
 import me.relex.circleindicator.CircleIndicator3;
 
 public class SelectDrinkActivity extends FragmentActivity {
@@ -82,6 +84,7 @@ public class SelectDrinkActivity extends FragmentActivity {
                 }
             }
         });
+
     }
 
     public void countDownTimer(){

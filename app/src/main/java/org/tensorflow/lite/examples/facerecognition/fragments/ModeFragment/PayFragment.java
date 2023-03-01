@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import org.tensorflow.lite.examples.facerecognition.CheckActivity;
 import org.tensorflow.lite.examples.facerecognition.PayActivity;
 import org.tensorflow.lite.examples.facerecognition.R;
 import org.tensorflow.lite.examples.facerecognition.SelectModeActivity;
@@ -46,7 +47,7 @@ public class PayFragment extends Fragment {
         pay_btn.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View view) {
-                Intent intent = new Intent(getActivity(), PayActivity.class);
+                Intent intent = new Intent(getActivity(), CheckActivity.class);
                 startActivity(intent);
 
                 FragmentManager fragmentManager = getActivity().getSupportFragmentManager();

@@ -1,7 +1,6 @@
 package org.tensorflow.lite.examples.facerecognition;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.ViewCompat;
 import androidx.fragment.app.FragmentActivity;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
@@ -11,6 +10,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.View;
+import android.widget.Toast;
+
+import org.tensorflow.lite.examples.facerecognition.Adapter.SelectModeAdapter;
 
 import me.relex.circleindicator.CircleIndicator3;
 
@@ -29,6 +31,17 @@ public class SelectModeActivity extends FragmentActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_mode);
+
+        Intent intent = getIntent();
+        String temp = intent.getStringExtra("temp");
+        String menu = intent.getStringExtra("menu");
+        String price = intent.getStringExtra("price");
+
+//        Toast.makeText(SelectModeActivity.this,temp,Toast.LENGTH_SHORT).show();
+//        Toast.makeText(SelectModeActivity.this,menu,Toast.LENGTH_SHORT).show();
+//        Toast.makeText(SelectModeActivity.this,price,Toast.LENGTH_SHORT).show();
+        Toast.makeText(SelectModeActivity.this,TimerCount.starttime,Toast.LENGTH_SHORT).show();
+
 
         //ViewPager2
         mPager = findViewById(R.id.select_mode_viewpager);

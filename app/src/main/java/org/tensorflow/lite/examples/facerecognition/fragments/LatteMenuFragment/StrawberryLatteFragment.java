@@ -26,6 +26,7 @@ import java.util.Locale;
 public class StrawberryLatteFragment extends Fragment {
     private TextToSpeech tts;
     private Button strawberry_latte_btn;
+    String text = "딸기라떼 3500원";
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -38,7 +39,7 @@ public class StrawberryLatteFragment extends Fragment {
         strawberry_latte_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String text = "딸기라떼 3500원";
+
                 Locale locale = Locale.getDefault();
                 tts.setLanguage(locale);
                 tts.speak(text, TextToSpeech.QUEUE_FLUSH, null, "id1");
@@ -49,6 +50,7 @@ public class StrawberryLatteFragment extends Fragment {
             @Override
             public boolean onLongClick(View view) {
                 Intent intent = new Intent(getActivity(), SelectModeActivity.class);
+
                 startActivity(intent);
 
                 FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
@@ -90,7 +92,6 @@ public class StrawberryLatteFragment extends Fragment {
                 Locale locale = Locale.getDefault();
                 tts.setLanguage(locale);
 
-                String text = "딸기라떼 3500원";
                 tts.speak(text, TextToSpeech.QUEUE_FLUSH, null, "id1");
 
             }

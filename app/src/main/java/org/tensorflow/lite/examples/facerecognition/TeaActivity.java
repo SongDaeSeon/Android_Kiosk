@@ -11,6 +11,8 @@ import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.View;
 
+import org.tensorflow.lite.examples.facerecognition.Adapter.TeaAdapter;
+
 import me.relex.circleindicator.CircleIndicator3;
 
 public class TeaActivity extends AppCompatActivity {

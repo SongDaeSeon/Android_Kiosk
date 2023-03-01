@@ -3,7 +3,6 @@ package org.tensorflow.lite.examples.facerecognition;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.ViewCompat;
-import androidx.fragment.app.FragmentManager;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 import androidx.viewpager2.widget.ViewPager2;
 
@@ -11,6 +10,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.View;
+
+import org.tensorflow.lite.examples.facerecognition.Adapter.CoffeeAdapter;
 
 import me.relex.circleindicator.CircleIndicator3;
 

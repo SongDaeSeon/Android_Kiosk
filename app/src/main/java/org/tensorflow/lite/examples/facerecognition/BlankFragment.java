@@ -1,4 +1,4 @@
-package org.tensorflow.lite.examples.facerecognition.fragments.ModeFragment;
+package org.tensorflow.lite.examples.facerecognition;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,31 +12,30 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import org.tensorflow.lite.examples.facerecognition.PayActivity;
 import org.tensorflow.lite.examples.facerecognition.R;
-import org.tensorflow.lite.examples.facerecognition.SelectDrinkActivity;
-import org.tensorflow.lite.examples.facerecognition.fragments.SmoothieMenuFragment.NoSmoothieFragment;
+import org.tensorflow.lite.examples.facerecognition.SelectModeActivity;
+import org.tensorflow.lite.examples.facerecognition.fragments.JuiceMenuFragment.AppleJuiceFragment;
 
 import java.util.Locale;
 
-
-public class AddOrderFragment extends Fragment {
+public class BlankFragment extends Fragment {
 
     private TextToSpeech tts;
-    private Button add_order_btn;
+    private Button blank_btn;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View v = (ViewGroup) inflater.inflate(
-                R.layout.fragment_add_order, container, false);
+        View v = (ViewGroup)inflater.inflate(R.layout.fragment_blank, container, false);
 
-        add_order_btn = v.findViewById(R.id.add_order_btn);
+        blank_btn = v.findViewById(R.id.blank_btn);
 
-        add_order_btn.setOnClickListener(new View.OnClickListener() {
+        blank_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String text = "추가주문";
+                String text = "빈거";
                 Locale locale = Locale.getDefault();
                 tts.setLanguage(locale);
                 tts.speak(text, TextToSpeech.QUEUE_FLUSH, null, "id1");
@@ -44,15 +43,14 @@ public class AddOrderFragment extends Fragment {
             }
         });
 
-        add_order_btn.setOnLongClickListener(new View.OnLongClickListener() {
+        blank_btn.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View view) {
-
-                Intent intent = new Intent(getActivity(), SelectDrinkActivity.class);
+                Intent intent = new Intent(getActivity(), PayActivity.class);
                 startActivity(intent);
 
                 FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-                fragmentManager.beginTransaction().remove(AddOrderFragment.this).commit();
+                fragmentManager.beginTransaction().remove(BlankFragment.this).commit();
                 fragmentManager.popBackStack();
 
                 return true;
@@ -65,14 +63,13 @@ public class AddOrderFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-
         tts = new TextToSpeech(getActivity(), new TextToSpeech.OnInitListener() {
             @Override
             public void onInit(int i) {
-                add_order_btn.setEnabled(true);
+                blank_btn.setEnabled(true);
                 Locale locale = Locale.getDefault();
                 tts.setLanguage(locale);
-                String text = "추가주문";
+                String text = "빈거";
                 tts.speak(text, TextToSpeech.QUEUE_FLUSH, null, "id1");
             }
         });

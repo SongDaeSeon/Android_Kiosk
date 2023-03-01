@@ -71,6 +71,7 @@ public class SelectWhereActivity extends AppCompatActivity {
         mNow = System.currentTimeMillis();
         mDate = new Date(mNow);
         r_time = mFormat.format(mDate);
+        TimerCount.starttime = r_time;
 
         tts = new TextToSpeech(this, new TextToSpeech.OnInitListener() {
             @Override
@@ -83,7 +84,7 @@ public class SelectWhereActivity extends AppCompatActivity {
                 tts.speak(text, TextToSpeech.QUEUE_FLUSH, null, "id1");
 
                 AudioManager audioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
-                audioManager.setStreamVolume(AudioManager.STREAM_MUSIC, 15, 0);
+                audioManager.setStreamVolume(AudioManager.STREAM_MUSIC, 5, 0);
 
                 handler.postDelayed(new Runnable()
                 {
@@ -121,7 +122,6 @@ public class SelectWhereActivity extends AppCompatActivity {
                 r_where = "포장";
                 InsertData task = new InsertData();
                 task.execute("http://" + IP_ADDRESS + "/insert_receipt.php", r_count, r_price, r_time, r_where);
-
 
                 Intent intent = new Intent(SelectWhereActivity.this, SelectDrinkActivity.class);
                 startActivity(intent);
