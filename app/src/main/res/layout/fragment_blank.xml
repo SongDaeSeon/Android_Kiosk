@@ -5,7 +5,7 @@
     android:layout_height="fill_parent"
     android:orientation="vertical"
     android:layout_margin="@dimen/pageMargin"
-    tools:context=".BlankFragment">
+    tools:context=".fragments.DeleteFragment.BlankFragment">
 
     <Button
         android:id="@+id/blank_btn"

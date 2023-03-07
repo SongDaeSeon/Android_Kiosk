@@ -1,4 +1,4 @@
-package org.tensorflow.lite.examples.facerecognition;
+package org.tensorflow.lite.examples.facerecognition.fragments.DeleteFragment;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,51 +12,48 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
-import org.tensorflow.lite.examples.facerecognition.PayActivity;
 import org.tensorflow.lite.examples.facerecognition.R;
-import org.tensorflow.lite.examples.facerecognition.SelectModeActivity;
-import org.tensorflow.lite.examples.facerecognition.fragments.JuiceMenuFragment.AppleJuiceFragment;
+import org.tensorflow.lite.examples.facerecognition.SelectDrinkActivity;
 
 import java.util.Locale;
 
-public class BlankFragment extends Fragment {
+public class DeleteAllFragment extends Fragment {
 
     private TextToSpeech tts;
-    private Button blank_btn;
+    private Button delete_all_btn;
+    String text = "전체삭제";
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View v = (ViewGroup)inflater.inflate(R.layout.fragment_blank, container, false);
+        View v = (ViewGroup) inflater.inflate(R.layout.fragment_delete_all, container, false);
 
-        blank_btn = v.findViewById(R.id.blank_btn);
+        delete_all_btn = v.findViewById(R.id.delete_all_btn);
 
-        blank_btn.setOnClickListener(new View.OnClickListener() {
+        delete_all_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String text = "빈거";
+
                 Locale locale = Locale.getDefault();
                 tts.setLanguage(locale);
                 tts.speak(text, TextToSpeech.QUEUE_FLUSH, null, "id1");
-
             }
         });
 
-        blank_btn.setOnLongClickListener(new View.OnLongClickListener() {
+        delete_all_btn.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View view) {
-                Intent intent = new Intent(getActivity(), PayActivity.class);
+                Intent intent = new Intent(getActivity(), SelectDrinkActivity.class);
                 startActivity(intent);
 
                 FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-                fragmentManager.beginTransaction().remove(BlankFragment.this).commit();
+                fragmentManager.beginTransaction().remove(DeleteAllFragment.this).commit();
                 fragmentManager.popBackStack();
 
                 return true;
             }
         });
-
         return v;
     }
 
@@ -65,12 +62,14 @@ public class BlankFragment extends Fragment {
         super.onResume();
         tts = new TextToSpeech(getActivity(), new TextToSpeech.OnInitListener() {
             @Override
-            public void onInit(int i) {
-                blank_btn.setEnabled(true);
+            public void onInit(int status) {
+                delete_all_btn.setEnabled(true);
                 Locale locale = Locale.getDefault();
                 tts.setLanguage(locale);
-                String text = "빈거";
+
+                String text = "전체삭제";
                 tts.speak(text, TextToSpeech.QUEUE_FLUSH, null, "id1");
+
             }
         });
     }

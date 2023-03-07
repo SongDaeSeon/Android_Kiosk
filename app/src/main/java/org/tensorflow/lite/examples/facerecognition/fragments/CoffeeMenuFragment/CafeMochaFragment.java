@@ -50,6 +50,8 @@ public class CafeMochaFragment extends Fragment {
             @Override
             public boolean onLongClick(View view) {
                 Intent intent = new Intent(getActivity(), SelectIceHotActivity.class);
+                intent.putExtra("menu", "카페모카");
+                intent.putExtra("price", "2800");
                 startActivity(intent);
 
                 FragmentManager fragmentManager = getActivity().getSupportFragmentManager();

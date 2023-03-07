@@ -50,6 +50,8 @@ public class ToffeenutLatteFragment extends Fragment {
             @Override
             public boolean onLongClick(View view) {
                 Intent intent = new Intent(getActivity(), SelectIceHotActivity.class);
+                intent.putExtra("menu", "토피넛라떼");
+                intent.putExtra("price", "3000");
                 startActivity(intent);
 
                 FragmentManager fragmentManager = getActivity().getSupportFragmentManager();

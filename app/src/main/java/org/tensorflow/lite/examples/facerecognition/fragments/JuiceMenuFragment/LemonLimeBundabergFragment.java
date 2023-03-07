@@ -48,6 +48,9 @@ public class LemonLimeBundabergFragment extends Fragment {
             @Override
             public boolean onLongClick(View view) {
                 Intent intent = new Intent(getActivity(), SelectModeActivity.class);
+                intent.putExtra("menu", "레몬라임분다버그");
+                intent.putExtra("price", "3500");
+                intent.putExtra("temp", "아이스");
                 startActivity(intent);
 
                 FragmentManager fragmentManager = getActivity().getSupportFragmentManager();

@@ -49,6 +49,8 @@ public class ChocoMuffinFragment extends Fragment {
             @Override
             public boolean onLongClick(View view) {
                 Intent intent = new Intent(getActivity(), SelectModeActivity.class);
+                intent.putExtra("menu", "초코머핀");
+                intent.putExtra("price", "1800");
                 startActivity(intent);
 
                 FragmentManager fragmentManager = getActivity().getSupportFragmentManager();

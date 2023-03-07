@@ -33,7 +33,7 @@ import java.util.Locale;
 
 public class SelectWhereActivity extends AppCompatActivity {
 
-    private static String IP_ADDRESS = "192.168.0.14";//ip주소 업데이트 계속 해줘야함
+    private static String IP_ADDRESS = "10.200.22.58";//ip주소 업데이트 계속 해줘야함
     private static String TAG = "phptest";
 
     private TextToSpeech tts;

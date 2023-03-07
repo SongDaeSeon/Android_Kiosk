@@ -48,6 +48,9 @@ public class BananaJuiceFragment extends Fragment {
             @Override
             public boolean onLongClick(View view) {
                 Intent intent = new Intent(getActivity(), SelectModeActivity.class);
+                intent.putExtra("menu", "바나나주스");
+                intent.putExtra("price", "3300");
+                intent.putExtra("temp", "아이스");
                 startActivity(intent);
 
                 FragmentManager fragmentManager = getActivity().getSupportFragmentManager();

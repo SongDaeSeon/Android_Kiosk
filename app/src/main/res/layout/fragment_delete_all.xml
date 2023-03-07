@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
     android:layout_margin="@dimen/pageMargin"
-    tools:context=".PayActivity">
+    android:orientation="vertical"
+    tools:context=".fragments.DeleteFragment.DeleteAllFragment">
 
     <Button
-        android:id="@+id/pay_btn1"
+        android:id="@+id/delete_all_btn"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:layout_weight="1"
-        android:text="카드를 넣어주세요"
+        android:text="전체삭제"
         android:lineSpacingExtra="@dimen/linespace"
         android:background="@color/yellow"
         android:textColor="@color/black"

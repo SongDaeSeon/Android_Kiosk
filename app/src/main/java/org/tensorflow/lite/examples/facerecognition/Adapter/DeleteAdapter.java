@@ -5,8 +5,8 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
-import org.tensorflow.lite.examples.facerecognition.BlankFragment;
-import org.tensorflow.lite.examples.facerecognition.fragments.ModeFragment.PayFragment;
+import org.tensorflow.lite.examples.facerecognition.fragments.DeleteFragment.BlankFragment;
+import org.tensorflow.lite.examples.facerecognition.fragments.DeleteFragment.DeleteAllFragment;
 
 public class DeleteAdapter extends FragmentStateAdapter {
 
@@ -26,8 +26,7 @@ public class DeleteAdapter extends FragmentStateAdapter {
         for(int i=0; i<mCount-1; i++){
             if(index == i) return new BlankFragment();
         }
-
-        return new PayFragment();
+        return new DeleteAllFragment();
 
 
     }

@@ -40,8 +40,7 @@ public class SelectModeActivity extends FragmentActivity {
 //        Toast.makeText(SelectModeActivity.this,temp,Toast.LENGTH_SHORT).show();
 //        Toast.makeText(SelectModeActivity.this,menu,Toast.LENGTH_SHORT).show();
 //        Toast.makeText(SelectModeActivity.this,price,Toast.LENGTH_SHORT).show();
-        Toast.makeText(SelectModeActivity.this,TimerCount.starttime,Toast.LENGTH_SHORT).show();
-
+//        Toast.makeText(SelectModeActivity.this,TimerCount.starttime,Toast.LENGTH_SHORT).show();
 
         //ViewPager2
         mPager = findViewById(R.id.select_mode_viewpager);

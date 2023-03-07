@@ -51,6 +51,8 @@ public class ChamomileFragment extends Fragment {
             @Override
             public boolean onLongClick(View view) {
                 Intent intent = new Intent(getActivity(), SelectIceHotActivity.class);
+                intent.putExtra("menu", "캐모마일");
+                intent.putExtra("price", "2000");
                 startActivity(intent);
 
                 FragmentManager fragmentManager = getActivity().getSupportFragmentManager();

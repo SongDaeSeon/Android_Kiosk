@@ -49,6 +49,8 @@ public class CreamCheeseBagelFragment extends Fragment {
             @Override
             public boolean onLongClick(View view) {
                 Intent intent = new Intent(getActivity(), SelectModeActivity.class);
+                intent.putExtra("menu", "크림치즈베이글");
+                intent.putExtra("price", "2800");
                 startActivity(intent);
 
                 FragmentManager fragmentManager = getActivity().getSupportFragmentManager();

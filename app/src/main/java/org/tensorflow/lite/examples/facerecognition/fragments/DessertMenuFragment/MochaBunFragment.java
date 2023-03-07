@@ -49,6 +49,8 @@ public class MochaBunFragment extends Fragment {
             @Override
             public boolean onLongClick(View view) {
                 Intent intent = new Intent(getActivity(), SelectModeActivity.class);
+                intent.putExtra("menu", "모카번");
+                intent.putExtra("price", "2000");
                 startActivity(intent);
 
                 FragmentManager fragmentManager = getActivity().getSupportFragmentManager();

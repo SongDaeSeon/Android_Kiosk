@@ -50,6 +50,8 @@ public class HazelnutLatteFragment extends Fragment {
             @Override
             public boolean onLongClick(View view) {
                 Intent intent = new Intent(getActivity(), SelectIceHotActivity.class);
+                intent.putExtra("menu", "헤이즐넛라떼");
+                intent.putExtra("price", "2800");
                 startActivity(intent);
 
                 FragmentManager fragmentManager = getActivity().getSupportFragmentManager();

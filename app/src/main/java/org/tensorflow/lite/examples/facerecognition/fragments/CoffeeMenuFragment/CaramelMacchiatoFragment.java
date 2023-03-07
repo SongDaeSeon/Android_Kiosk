@@ -38,7 +38,7 @@ public class CaramelMacchiatoFragment extends Fragment {
         caramelmacchiato_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String text = "카라멜 마끼야또 2800원";
+                String text = "캬라멜 마끼야=아또 2800원";
                 Locale locale = Locale.getDefault();
                 tts.setLanguage(locale);
                 tts.speak(text, TextToSpeech.QUEUE_FLUSH, null, "id1");
@@ -49,6 +49,8 @@ public class CaramelMacchiatoFragment extends Fragment {
             @Override
             public boolean onLongClick(View view) {
                 Intent intent = new Intent(getActivity(), SelectIceHotActivity.class);
+                intent.putExtra("menu", "캬라멜마끼아또");
+                intent.putExtra("price", "2800");
                 startActivity(intent);
 
                 FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
@@ -92,7 +94,7 @@ public class CaramelMacchiatoFragment extends Fragment {
                 Locale locale = Locale.getDefault();
                 tts.setLanguage(locale);
 
-                String text = "카라멜 마끼야또 2800원";
+                String text = "캬라멜 마끼아또 2800원";
                 tts.speak(text, TextToSpeech.QUEUE_FLUSH, null, "id1");
 
             }

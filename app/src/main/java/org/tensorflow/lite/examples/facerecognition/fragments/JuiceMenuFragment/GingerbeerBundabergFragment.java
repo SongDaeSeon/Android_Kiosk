@@ -38,7 +38,7 @@ public class GingerbeerBundabergFragment extends Fragment {
         gingerbeer_bundaberg_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String text = "진져비어 분다버그 3500원";
+                String text = "진저비어 분다버그 3500원";
                 Locale locale = Locale.getDefault();
                 tts.setLanguage(locale);
                 tts.speak(text, TextToSpeech.QUEUE_FLUSH, null, "id1");
@@ -48,6 +48,9 @@ public class GingerbeerBundabergFragment extends Fragment {
             @Override
             public boolean onLongClick(View view) {
                 Intent intent = new Intent(getActivity(), SelectModeActivity.class);
+                intent.putExtra("menu", "진저비어분다버그");
+                intent.putExtra("price", "3500");
+                intent.putExtra("temp", "아이스");
                 startActivity(intent);
 
                 FragmentManager fragmentManager = getActivity().getSupportFragmentManager();

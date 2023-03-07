@@ -52,6 +52,9 @@ public class GrapefruitAdeFragment extends Fragment {
             @Override
             public boolean onLongClick(View view) {
                 Intent intent = new Intent(getActivity(), SelectModeActivity.class);
+                intent.putExtra("menu", "자몽에이드");
+                intent.putExtra("price", "3000");
+                intent.putExtra("temp", "아이스");
                 startActivity(intent);
 
                 FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
