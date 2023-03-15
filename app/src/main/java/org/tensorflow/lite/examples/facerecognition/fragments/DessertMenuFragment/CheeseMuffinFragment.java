@@ -51,6 +51,7 @@ public class CheeseMuffinFragment extends Fragment {
                 Intent intent = new Intent(getActivity(), SelectModeActivity.class);
                 intent.putExtra("menu", "치즈머핀");
                 intent.putExtra("price", "1800");
+                intent.putExtra("temp","없음");
                 startActivity(intent);
 
                 FragmentManager fragmentManager = getActivity().getSupportFragmentManager();

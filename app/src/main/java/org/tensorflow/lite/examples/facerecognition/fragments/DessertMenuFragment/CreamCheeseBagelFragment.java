@@ -51,6 +51,7 @@ public class CreamCheeseBagelFragment extends Fragment {
                 Intent intent = new Intent(getActivity(), SelectModeActivity.class);
                 intent.putExtra("menu", "크림치즈베이글");
                 intent.putExtra("price", "2800");
+                intent.putExtra("temp","없음");
                 startActivity(intent);
 
                 FragmentManager fragmentManager = getActivity().getSupportFragmentManager();

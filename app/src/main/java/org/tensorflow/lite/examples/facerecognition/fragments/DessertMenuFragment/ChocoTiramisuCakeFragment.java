@@ -51,6 +51,7 @@ public class ChocoTiramisuCakeFragment extends Fragment {
                 Intent intent = new Intent(getActivity(), SelectModeActivity.class);
                 intent.putExtra("menu", "초코티라미스조각케익");
                 intent.putExtra("price", "2500");
+                intent.putExtra("temp","없음");
                 startActivity(intent);
 
                 FragmentManager fragmentManager = getActivity().getSupportFragmentManager();

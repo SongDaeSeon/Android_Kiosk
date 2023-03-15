@@ -51,6 +51,7 @@ public class CroquemonsieurFragment extends Fragment {
                 Intent intent = new Intent(getActivity(), SelectModeActivity.class);
                 intent.putExtra("menu", "크로크무슈");
                 intent.putExtra("price", "3800");
+                intent.putExtra("temp","없음");
                 startActivity(intent);
 
                 FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
