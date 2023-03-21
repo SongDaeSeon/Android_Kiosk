@@ -22,4 +22,10 @@
         >
     </Button>
 
+    <TextView
+        android:layout_width="250dp"
+        android:layout_height="100dp"
+        android:id="@+id/ex"/>
+
+
 </LinearLayout>

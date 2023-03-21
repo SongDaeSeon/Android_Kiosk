@@ -54,6 +54,7 @@ public class PayFragment extends Fragment {
                 fragmentManager.beginTransaction().remove(PayFragment.this).commit();
                 fragmentManager.popBackStack();
 
+
                 return true;
             }
         });
