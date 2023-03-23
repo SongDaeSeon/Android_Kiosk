@@ -20,7 +20,7 @@ public class SelectDrinkActivity extends FragmentActivity {
 
     private ViewPager2 mPager;
     private FragmentStateAdapter pagerAdapter;
-    private int num_page = 7;
+    private int num_page = 8;
     private CircleIndicator3 mIndicator;
 
     //일정 시간 터치 없을시 자동 처음 화면 돌아가기 위한 코드
@@ -44,7 +44,7 @@ public class SelectDrinkActivity extends FragmentActivity {
         //ViewPager Setting
         mPager.setOrientation(ViewPager2.ORIENTATION_HORIZONTAL);
 
-        mPager.setCurrentItem(1001,false);
+        mPager.setCurrentItem(1000,false);
         mPager.setOffscreenPageLimit(ViewPager2.OFFSCREEN_PAGE_LIMIT_DEFAULT);
 
         countDownTimer();

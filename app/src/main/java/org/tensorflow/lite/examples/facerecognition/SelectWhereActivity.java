@@ -19,6 +19,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.tensorflow.lite.examples.facerecognition.fragments.DrinkFragment.CoffeeFragment;
 
 import java.io.BufferedReader;
@@ -28,13 +31,25 @@ import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Locale;
 
 public class SelectWhereActivity extends AppCompatActivity {
 
     private static String IP_ADDRESS = TimerCount.IP;//ip주소 업데이트 계속 해줘야함
-    private static String TAG = "phptest";
+    private static String TAG = "phpquerytest";
+    private static final String TAG_JSON = "cwnu";
+    private static final String TAG_NAME = "m_name";
+    private static final String TAG_TEMP = "m_temp";
+    private static final String TAG_PRICE = "m_price";
+    String mJsonString;
+
+    //    //테스트
+    TextView textView;
+
+    ArrayList<HashMap<String, String>> mArrayList;
 
     private TextToSpeech tts;
     private Button button1;
@@ -61,6 +76,12 @@ public class SelectWhereActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_where);
 
+        //        //테스트
+        textView = findViewById(R.id.ex);
+        textView.setMovementMethod(new ScrollingMovementMethod());
+
+        mArrayList = new ArrayList<>();
+
         button1 = (Button) findViewById(R.id.button1);
         button2 = (Button) findViewById(R.id.button2);
 
@@ -72,6 +93,9 @@ public class SelectWhereActivity extends AppCompatActivity {
         mDate = new Date(mNow);
         r_time = mFormat.format(mDate);
         TimerCount.starttime = r_time;
+
+        SelectRecommendMenu task1 = new SelectRecommendMenu();
+        task1.execute(r_time);
 
         tts = new TextToSpeech(this, new TextToSpeech.OnInitListener() {
             @Override
@@ -280,5 +304,140 @@ public class SelectWhereActivity extends AppCompatActivity {
             }
 
         }
+    }
+
+    private class SelectRecommendMenu extends AsyncTask<String, Void, String>{
+
+        ProgressDialog progressDialog;
+        String errorString = null;
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+
+            progressDialog = ProgressDialog.show(SelectWhereActivity.this,
+                    "Please Wait", null, true, true);
+        }
+
+
+        @Override
+        protected void onPostExecute(String result) {
+            super.onPostExecute(result);
+
+            progressDialog.dismiss();
+            Log.d(TAG, "response - " + result);
+
+            if (result == null){
+
+//                mTextViewResult.setText(errorString);
+            }
+            else {
+
+                mJsonString = result;
+//                textView.setText(result);
+                showRecommend();
+            }
+        }
+
+
+        @Override
+        protected String doInBackground(String... params) {
+
+            String r_time = params[0];
+
+            String serverURL = "http://"+TimerCount.IP+"/select_recommend_menu.php";
+            String postParameters = "r_time=" + r_time ;
+
+
+            try {
+
+                URL url = new URL(serverURL);
+                HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
+
+
+                httpURLConnection.setReadTimeout(5000);
+                httpURLConnection.setConnectTimeout(5000);
+                httpURLConnection.setRequestMethod("POST");
+                httpURLConnection.setDoInput(true);
+                httpURLConnection.connect();
+
+
+                OutputStream outputStream = httpURLConnection.getOutputStream();
+                outputStream.write(postParameters.getBytes("UTF-8"));
+                outputStream.flush();
+                outputStream.close();
+
+
+                int responseStatusCode = httpURLConnection.getResponseCode();
+                Log.d(TAG, "response code - " + responseStatusCode);
+
+                InputStream inputStream;
+                if(responseStatusCode == HttpURLConnection.HTTP_OK) {
+                    inputStream = httpURLConnection.getInputStream();
+                }
+                else{
+                    inputStream = httpURLConnection.getErrorStream();
+                }
+
+
+                InputStreamReader inputStreamReader = new InputStreamReader(inputStream, "UTF-8");
+                BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+
+                StringBuilder sb = new StringBuilder();
+                String line;
+
+                while((line = bufferedReader.readLine()) != null){
+                    sb.append(line);
+                }
+
+
+                bufferedReader.close();
+
+
+                return sb.toString().trim();
+
+
+            } catch (Exception e) {
+
+                Log.d(TAG, "SelectRecommendMenu: Error ", e);
+                errorString = e.toString();
+
+                return null;
+            }
+
+        }
+    }
+
+    private void showRecommend(){
+        try {
+            JSONObject jsonObject = new JSONObject(mJsonString);
+            JSONArray jsonArray = jsonObject.getJSONArray(TAG_JSON);
+
+            for (int i = 0; i < jsonArray.length(); i++) {
+
+                JSONObject item = jsonArray.getJSONObject(i);
+
+                String m_temp = item.getString(TAG_TEMP);
+                String m_name = item.getString(TAG_NAME);
+                String m_price = item.getString(TAG_PRICE);
+
+                HashMap<String, String> hashMap = new HashMap<>();
+
+                hashMap.put(TAG_TEMP, m_temp);
+                hashMap.put(TAG_NAME, m_name);
+                hashMap.put(TAG_PRICE, m_price);
+
+                mArrayList.add(hashMap);
+
+            }
+
+            TimerCount.RECOMMEND_MENU_ARRAY = mArrayList;
+
+
+        } catch (JSONException e) {
+
+            Log.d(TAG, "showDelete : ", e);
+        }
+
     }
 }

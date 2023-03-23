@@ -2,6 +2,7 @@ package org.tensorflow.lite.examples.facerecognition.fragments.DeleteFragment;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 
@@ -9,7 +10,11 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
 import android.speech.tts.TextToSpeech;
+import android.text.Spannable;
+import android.text.SpannableString;
 import android.text.method.ScrollingMovementMethod;
+import android.text.style.ForegroundColorSpan;
+import android.text.style.RelativeSizeSpan;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -54,8 +59,8 @@ public class BlankFragment extends Fragment {
     private static final String TAG_PRICE = "m_price";
     private static String p_count;
 
-    //테스트
-    TextView textView;
+//    //테스트
+//    TextView textView;
 
     public BlankFragment() {
     }
@@ -74,21 +79,64 @@ public class BlankFragment extends Fragment {
 
         blank_btn = v.findViewById(R.id.blank_btn);
 
+
+
+        if(temp.equals("없음")) {
+            String content = menu + "\n" + price + "원";
+            SpannableString spannableString = new SpannableString(content);
+
+            // 2
+            String word = price +"원";
+            int start = content.indexOf(word);
+            int end = start + word.length();
+
+            // 보라색 컬러 들고오기
+            int color = getActivity().getColor(R.color.purple);
+            String purple = "#" + Integer.toHexString(color);
+
+            // 3
+            spannableString.setSpan(new ForegroundColorSpan(Color.parseColor(purple)), start, end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+            spannableString.setSpan(new RelativeSizeSpan(0.95f), start, end, SpannableString.SPAN_EXCLUSIVE_EXCLUSIVE);
+
+            // 4
+            blank_btn.setText(spannableString);
+        }else{
+
+            String content = temp + "\n"+ menu + "\n" + price + "원";
+            SpannableString spannableString = new SpannableString(content);
+
+            // 2
+            String word = price +"원";
+            int start = content.indexOf(word);
+            int end = start + word.length();
+
+            // 보라색 컬러 들고오기
+            int color = getActivity().getColor(R.color.purple);
+            String purple = "#" + Integer.toHexString(color);
+
+            // 3
+            spannableString.setSpan(new ForegroundColorSpan(Color.parseColor(purple)), start, end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+            spannableString.setSpan(new RelativeSizeSpan(0.95f), start, end, SpannableString.SPAN_EXCLUSIVE_EXCLUSIVE);
+
+
+            // 4
+            blank_btn.setText(spannableString);
+        }
+
+
         //테스트
-        textView = v.findViewById(R.id.ex);
-        textView.setMovementMethod(new ScrollingMovementMethod());
+//        textView = v.findViewById(R.id.ex);
+//        textView.setMovementMethod(new ScrollingMovementMethod());
 
 //        Toast.makeText(getActivity(),String.valueOf(TimerCount.DELETE_MENU_ARRAY.size()), Toast.LENGTH_SHORT).show();
         GetData task = new GetData();
         task.execute( TimerCount.starttime, temp, menu);
 
 
-
-
         blank_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String text = "빈거";
+                String text = temp + menu + price;
                 Locale locale = Locale.getDefault();
                 tts.setLanguage(locale);
                 tts.speak(text, TextToSpeech.QUEUE_FLUSH, null, "id1");
@@ -100,12 +148,12 @@ public class BlankFragment extends Fragment {
             @Override
             public boolean onLongClick(View view) {
 
-
                 UpdateDownReceipt task5 = new UpdateDownReceipt();
                 task5.execute( TimerCount.starttime, temp, menu);
 
 //                Toast.makeText(getActivity(), menu,Toast.LENGTH_SHORT).show();
 
+                //product 한개 남았으면 product 삭제로
                 if(p_count.equals("1")){
 
                     DeleteProduct task3 = new DeleteProduct();
@@ -150,7 +198,7 @@ public class BlankFragment extends Fragment {
                 blank_btn.setEnabled(true);
                 Locale locale = Locale.getDefault();
                 tts.setLanguage(locale);
-                String text = "빈거";
+                String text = temp + menu + price;
                 tts.speak(text, TextToSpeech.QUEUE_FLUSH, null, "id1");
             }
         });
@@ -437,7 +485,6 @@ public class BlankFragment extends Fragment {
 
 
                 bufferedReader.close();
-
 
                 return sb.toString().trim();
 

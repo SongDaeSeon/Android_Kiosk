@@ -20,6 +20,14 @@
         android:usesCleartextTraffic="true"
         tools:ignore="AllowBackup">
         <activity
+            android:name=".RecommendActivity"
+            android:exported="true"
+            android:theme="@style/FullScreenTheme">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".CheckActivity"
             android:exported="true"
             android:theme="@style/FullScreenTheme">

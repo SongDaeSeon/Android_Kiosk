@@ -10,6 +10,7 @@ import org.tensorflow.lite.examples.facerecognition.fragments.DrinkFragment.Coff
 import org.tensorflow.lite.examples.facerecognition.fragments.DrinkFragment.DesertFragment;
 import org.tensorflow.lite.examples.facerecognition.fragments.DrinkFragment.JuiceFragment;
 import org.tensorflow.lite.examples.facerecognition.fragments.DrinkFragment.LatteFragment;
+import org.tensorflow.lite.examples.facerecognition.fragments.DrinkFragment.RecommendFragment;
 import org.tensorflow.lite.examples.facerecognition.fragments.DrinkFragment.SmoothieFragment;
 import org.tensorflow.lite.examples.facerecognition.fragments.DrinkFragment.TeaFragment;
 
@@ -28,12 +29,13 @@ public class Myadapter extends FragmentStateAdapter {
     public Fragment createFragment(int position) {
         int index = getRealPosition(position);
 
-        if(index==0) return new CoffeeFragment();
-        else if(index==1) return new LatteFragment();
-        else if(index==2) return new SmoothieFragment();
-        else if(index==3) return new TeaFragment();
-        else if(index==4) return new AdeFragment();
-        else if(index==5) return new JuiceFragment();
+        if(index==0) return new RecommendFragment();
+        else if(index==1) return new CoffeeFragment();
+        else if(index==2) return new LatteFragment();
+        else if(index==3) return new SmoothieFragment();
+        else if(index==4) return new TeaFragment();
+        else if(index==5) return new AdeFragment();
+        else if(index==6) return new JuiceFragment();
         else return new DesertFragment();
     }
 

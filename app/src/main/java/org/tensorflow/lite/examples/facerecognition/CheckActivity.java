@@ -65,6 +65,8 @@ public class CheckActivity extends AppCompatActivity {
         textView = findViewById(R.id.ex);
         textView.setMovementMethod(new ScrollingMovementMethod());
 
+//        textView.setText(TimerCount.RECOMMEND_MENU_ARRAY.get(0).get(TAG_NAME));
+
         pay_btn = (Button) findViewById(R.id.pay_btn);
         cancel_btn = (Button) findViewById(R.id.cancel_btn);
 
