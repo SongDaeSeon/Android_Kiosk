@@ -26,7 +26,7 @@ public class PayActivity extends AppCompatActivity {
             @Override
             public void onInit(int status) {
                 pay_btn1.setEnabled(true);
-                String text = "카드를 넣어주세요";
+                String text = "IC카드를 삽입하시길 바랍니다";
                 Locale locale = Locale.getDefault();
                 tts.setLanguage(locale);
                 tts.speak(text, TextToSpeech.QUEUE_FLUSH, null, "id1");
