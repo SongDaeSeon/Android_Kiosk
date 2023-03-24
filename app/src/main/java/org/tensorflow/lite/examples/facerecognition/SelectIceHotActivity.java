@@ -2,24 +2,13 @@ package org.tensorflow.lite.examples.facerecognition;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.ProgressDialog;
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.CountDownTimer;
-import android.os.Handler;
 import android.speech.tts.TextToSpeech;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
 
-import java.io.BufferedReader;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.util.Locale;
 
 public class SelectIceHotActivity extends AppCompatActivity {
@@ -35,7 +24,6 @@ public class SelectIceHotActivity extends AppCompatActivity {
     private int count = TimerCount.COUNT;
     private CountDownTimer countDownTimer;
 
-    Handler handler = new Handler();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,22 +49,11 @@ public class SelectIceHotActivity extends AppCompatActivity {
                 Locale locale = Locale.getDefault();
                 tts.setLanguage(locale);
                 tts.speak(text, TextToSpeech.QUEUE_FLUSH, null, "id1");
-
-                handler.postDelayed(new Runnable()
-                {
-                    @Override
-                    public void run() {
-                        Intent intent = new Intent(SelectIceHotActivity.this, MainActivity.class);
-                        startActivity(intent);
-                        finish();
-                    }
-                }, 10000);// 10초 정도 딜레이를 준 후 반응 없으면 메인화면으로 돌아감
             }
         });
         button_ice.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                handler.removeMessages(0);
 
                 String text = "아이스";
                 Locale locale = Locale.getDefault();
@@ -89,7 +66,6 @@ public class SelectIceHotActivity extends AppCompatActivity {
             @Override
             public boolean onLongClick(View view) {
 
-                handler.removeMessages(0);
                 Intent intent = new Intent(SelectIceHotActivity.this, SelectModeActivity.class);
                 intent.putExtra("temp", "아이스");
                 intent.putExtra("menu", menu);
@@ -103,7 +79,6 @@ public class SelectIceHotActivity extends AppCompatActivity {
         button_hot.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                handler.removeMessages(0);
 
                 String text = "핫";
                 Locale locale = Locale.getDefault();
@@ -115,7 +90,6 @@ public class SelectIceHotActivity extends AppCompatActivity {
         button_hot.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View view) {
-                handler.removeMessages(0);
 
                 Intent intent = new Intent(SelectIceHotActivity.this, SelectModeActivity.class);
                 intent.putExtra("temp", "핫");

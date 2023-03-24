@@ -7,7 +7,6 @@ import android.media.AudioManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.CountDownTimer;
-import android.os.Handler;
 import android.speech.tts.TextToSpeech;
 import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
@@ -70,7 +69,6 @@ public class SelectWhereActivity extends AppCompatActivity {
     private int count = TimerCount.COUNT;
     private CountDownTimer countDownTimer;
 
-    Handler handler = new Handler();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -109,23 +107,12 @@ public class SelectWhereActivity extends AppCompatActivity {
 
                 AudioManager audioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
                 audioManager.setStreamVolume(AudioManager.STREAM_MUSIC, 5, 0);
-
-                handler.postDelayed(new Runnable()
-                {
-                    @Override
-                    public void run() {
-                        Intent intent = new Intent(SelectWhereActivity.this, MainActivity.class);
-                        startActivity(intent);
-                        finish();
-                    }
-                }, 10000);// 10초 정도 딜레이를 준 후 반응 없으면 메인화면으로 돌아감
             }
         });
 
         button1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                handler.removeMessages(0);
 
                 //일정 시간 터치 없을시 자동 처음 화면 돌아가기 위한 코드
                 countDownTimer.cancel();
@@ -141,7 +128,6 @@ public class SelectWhereActivity extends AppCompatActivity {
         button1.setOnLongClickListener(new View.OnLongClickListener(){
             @Override
             public boolean onLongClick(View v) {
-                handler.removeMessages(0);
 
                 r_where = "포장";
                 InsertData task = new InsertData();
@@ -158,7 +144,6 @@ public class SelectWhereActivity extends AppCompatActivity {
         button2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                handler.removeMessages(0);
 
                 //일정 시간 터치 없을시 자동 처음 화면 돌아가기 위한 코드
                 countDownTimer.cancel();
@@ -173,7 +158,6 @@ public class SelectWhereActivity extends AppCompatActivity {
         button2.setOnLongClickListener(new View.OnLongClickListener(){
             @Override
             public boolean onLongClick(View v) {
-                handler.removeMessages(0);
 
                 r_where = "매장";
                 InsertData task = new InsertData();
