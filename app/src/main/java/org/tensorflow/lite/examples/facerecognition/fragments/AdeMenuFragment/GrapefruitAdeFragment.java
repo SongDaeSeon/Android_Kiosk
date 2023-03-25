@@ -1,12 +1,10 @@
 package org.tensorflow.lite.examples.facerecognition.fragments.AdeMenuFragment;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-
+import android.os.Vibrator;
 import android.speech.tts.TextToSpeech;
 import android.text.Spannable;
 import android.text.SpannableString;
@@ -17,10 +15,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+
 import org.tensorflow.lite.examples.facerecognition.R;
-import org.tensorflow.lite.examples.facerecognition.SelectModeActivity;
-import org.tensorflow.lite.examples.facerecognition.SelectWhereActivity;
-import org.tensorflow.lite.examples.facerecognition.fragments.CoffeeMenuFragment.AmericanoFragment;
+import org.tensorflow.lite.examples.facerecognition.activity.SelectModeActivity;
 
 import java.util.Locale;
 
@@ -28,6 +27,7 @@ import java.util.Locale;
 public class GrapefruitAdeFragment extends Fragment {
     private TextToSpeech tts;
     private Button grapefruit_ade_btn;
+    private Vibrator vibrator;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -41,6 +41,8 @@ public class GrapefruitAdeFragment extends Fragment {
         grapefruit_ade_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                vibrator = (Vibrator) getActivity().getSystemService(Context.VIBRATOR_SERVICE);
+                vibrator.vibrate(100); // 0.1초간 진동
                 String text = "자몽에이드 3000원";
                 Locale locale = Locale.getDefault();
                 tts.setLanguage(locale);

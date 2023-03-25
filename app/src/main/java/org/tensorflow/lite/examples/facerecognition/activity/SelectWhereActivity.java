@@ -1,4 +1,4 @@
-package org.tensorflow.lite.examples.facerecognition;
+package org.tensorflow.lite.examples.facerecognition.activity;
 
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -7,6 +7,7 @@ import android.media.AudioManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.os.Vibrator;
 import android.speech.tts.TextToSpeech;
 import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
@@ -15,13 +16,12 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.tensorflow.lite.examples.facerecognition.fragments.DrinkFragment.CoffeeFragment;
+import org.tensorflow.lite.examples.facerecognition.R;
+import org.tensorflow.lite.examples.facerecognition.TimerCount;
 
 import java.io.BufferedReader;
 import java.io.InputStream;
@@ -53,6 +53,7 @@ public class SelectWhereActivity extends AppCompatActivity {
     private TextToSpeech tts;
     private Button button1;
     private Button button2;
+    private Vibrator vibrator;
 
     //디비 관련 날짜
     long mNow;
@@ -100,19 +101,21 @@ public class SelectWhereActivity extends AppCompatActivity {
             public void onInit(int status) {
                 button1.setEnabled(true);
                 button2.setEnabled(true);
-                String text = "포장 매장을 선택해주세요.";
+                String text = "포장/매장을 선택해주세요. 포장을 원하면 화면의 상단을, 매장을 원하면 하단을 클릭해주세요";
                 Locale locale = Locale.getDefault();
                 tts.setLanguage(locale);
                 tts.speak(text, TextToSpeech.QUEUE_FLUSH, null, "id1");
 
-                AudioManager audioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
-                audioManager.setStreamVolume(AudioManager.STREAM_MUSIC, 5, 0);
+//                AudioManager audioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
+//                audioManager.setStreamVolume(AudioManager.STREAM_MUSIC, 5, 0);
             }
         });
 
         button1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                vibrator = (Vibrator)getSystemService(Context.VIBRATOR_SERVICE);
+                vibrator.vibrate(100); // 0.1초간 진동
 
                 //일정 시간 터치 없을시 자동 처음 화면 돌아가기 위한 코드
                 countDownTimer.cancel();
@@ -144,6 +147,8 @@ public class SelectWhereActivity extends AppCompatActivity {
         button2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                vibrator = (Vibrator)getSystemService(Context.VIBRATOR_SERVICE);
+                vibrator.vibrate(100); // 0.1초간 진동
 
                 //일정 시간 터치 없을시 자동 처음 화면 돌아가기 위한 코드
                 countDownTimer.cancel();

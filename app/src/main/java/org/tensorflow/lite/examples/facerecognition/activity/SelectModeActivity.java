@@ -1,4 +1,4 @@
-package org.tensorflow.lite.examples.facerecognition;
+package org.tensorflow.lite.examples.facerecognition.activity;
 
 import androidx.annotation.NonNull;
 import androidx.core.view.ViewCompat;
@@ -11,16 +11,15 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.CountDownTimer;
-import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.View;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.tensorflow.lite.examples.facerecognition.Adapter.SelectModeAdapter;
+import org.tensorflow.lite.examples.facerecognition.R;
+import org.tensorflow.lite.examples.facerecognition.TimerCount;
 
 import java.io.BufferedReader;
 import java.io.InputStream;
@@ -30,7 +29,6 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Timer;
 
 import me.relex.circleindicator.CircleIndicator3;
 

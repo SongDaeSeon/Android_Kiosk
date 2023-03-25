@@ -1,4 +1,4 @@
-package org.tensorflow.lite.examples.facerecognition;
+package org.tensorflow.lite.examples.facerecognition.activity;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,33 +12,50 @@ import android.os.CountDownTimer;
 import android.view.View;
 
 import org.tensorflow.lite.examples.facerecognition.Adapter.DeleteAdapter;
-import org.tensorflow.lite.examples.facerecognition.Adapter.RecommendAdapter;
+import org.tensorflow.lite.examples.facerecognition.R;
+import org.tensorflow.lite.examples.facerecognition.TimerCount;
 
 import me.relex.circleindicator.CircleIndicator3;
 
-public class RecommendActivity extends AppCompatActivity {
+public class DeleteActivity extends AppCompatActivity {
+
+    private static String TAG = "phpquerytest";
+    private static final String TAG_JSON = "cwnu";
+
+
+    static String check_count ; // p_count 저장할 전역변수
+    String mJsonString;
 
     private ViewPager2 mPager;
     private FragmentStateAdapter pagerAdapter;
-    private int num_page = 4;//
+    private int r_count = Integer.parseInt(TimerCount.NUM_PAGE);
+    private int num_page = r_count + 1;
     private CircleIndicator3 mIndicator;
 
     //일정 시간 터치 없을시 자동 처음 화면 돌아가기 위한 코드
     private int count = TimerCount.COUNT;
     private CountDownTimer countDownTimer;
 
+//        //테스트
+//    TextView textView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_recommend);
+        setContentView(R.layout.activity_delete);
+
+
+//        //테스트
+//        textView = findViewById(R.id.ex);
+//        textView.setMovementMethod(new ScrollingMovementMethod());
 
         //ViewPager2
-        mPager = findViewById(R.id.recommend_viewpager);
+        mPager = findViewById(R.id.delete_viewpager);
         //Adapter
-        pagerAdapter = new RecommendAdapter(this, num_page);
+        pagerAdapter = new DeleteAdapter(this, num_page);
         mPager.setAdapter(pagerAdapter);
         //Indicator
-        mIndicator = findViewById(R.id.recommend_indicator);
+        mIndicator = findViewById(R.id.delete_indicator);
         mIndicator.setViewPager(mPager);
         mIndicator.createIndicators(num_page,0);
         //ViewPager Setting
@@ -88,14 +105,13 @@ public class RecommendActivity extends AppCompatActivity {
             }
         });
     }
-
     public void countDownTimer(){
         countDownTimer = new CountDownTimer(TimerCount.MILLISINFUTURE, TimerCount.COUNT_DOWN_INTERVAL) {
             public void onTick(long millisUntilFinished) {
                 count --;
             }
             public void onFinish() {
-                Intent intent = new Intent(RecommendActivity.this, SelectWhereActivity.class);
+                Intent intent = new Intent(DeleteActivity.this, MainActivity.class);
                 startActivity(intent);
                 finish();
 
@@ -125,4 +141,6 @@ public class RecommendActivity extends AppCompatActivity {
 
         super.onDestroy();
     }
+
+
 }

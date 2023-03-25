@@ -1,4 +1,4 @@
-package org.tensorflow.lite.examples.facerecognition;
+package org.tensorflow.lite.examples.facerecognition.activity;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -6,85 +6,50 @@ import androidx.core.view.ViewCompat;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 import androidx.viewpager2.widget.ViewPager2;
 
-import android.app.ProgressDialog;
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.CountDownTimer;
-import android.text.method.ScrollingMovementMethod;
-import android.util.Log;
 import android.view.View;
-import android.widget.TextView;
-import android.widget.Toast;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-import org.tensorflow.lite.examples.facerecognition.Adapter.DeleteAdapter;
-
-import java.io.BufferedReader;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.sql.Time;
-import java.util.ArrayList;
-import java.util.HashMap;
+import org.tensorflow.lite.examples.facerecognition.Adapter.LatteAdapter;
+import org.tensorflow.lite.examples.facerecognition.R;
+import org.tensorflow.lite.examples.facerecognition.TimerCount;
 
 import me.relex.circleindicator.CircleIndicator3;
 
-public class DeleteActivity extends AppCompatActivity {
-
-    private static String TAG = "phpquerytest";
-    private static final String TAG_JSON = "cwnu";
-
-
-    static String check_count ; // p_count 저장할 전역변수
-    String mJsonString;
+public class LatteActivity extends AppCompatActivity {
 
     private ViewPager2 mPager;
     private FragmentStateAdapter pagerAdapter;
-    private int r_count = Integer.parseInt(TimerCount.NUM_PAGE);
-    private int num_page = r_count + 1;
+    private int num_page = 7;
     private CircleIndicator3 mIndicator;
 
     //일정 시간 터치 없을시 자동 처음 화면 돌아가기 위한 코드
     private int count = TimerCount.COUNT;
     private CountDownTimer countDownTimer;
 
-//        //테스트
-//    TextView textView;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_delete);
+        setContentView(R.layout.activity_latte);
 
-
-//        //테스트
-//        textView = findViewById(R.id.ex);
-//        textView.setMovementMethod(new ScrollingMovementMethod());
-
-        //ViewPager2
-        mPager = findViewById(R.id.delete_viewpager);
+      //ViewPager2
+        mPager = findViewById(R.id.latte_viewpager);
         //Adapter
-        pagerAdapter = new DeleteAdapter(this, num_page);
+        pagerAdapter = new LatteAdapter(this, num_page);
         mPager.setAdapter(pagerAdapter);
         //Indicator
-        mIndicator = findViewById(R.id.delete_indicator);
+        mIndicator = findViewById(R.id.latte_indicator);
         mIndicator.setViewPager(mPager);
         mIndicator.createIndicators(num_page,0);
         //ViewPager Setting
         mPager.setOrientation(ViewPager2.ORIENTATION_HORIZONTAL);
 
-        mPager.setCurrentItem(1000,false);
+        mPager.setCurrentItem(1001,false);
         mPager.setOffscreenPageLimit(ViewPager2.OFFSCREEN_PAGE_LIMIT_DEFAULT);
 
         countDownTimer();
         countDownTimer.start();
-
-//        textView.setText(TimerCount.R_COUNT);
 
         mPager.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
             @Override
@@ -128,14 +93,13 @@ public class DeleteActivity extends AppCompatActivity {
                 count --;
             }
             public void onFinish() {
-                Intent intent = new Intent(DeleteActivity.this, SelectWhereActivity.class);
+                Intent intent = new Intent(LatteActivity.this, MainActivity.class);
                 startActivity(intent);
                 finish();
 
             }
         };
     }
-
     @Override
     protected void onPause() {
 
@@ -158,6 +122,4 @@ public class DeleteActivity extends AppCompatActivity {
 
         super.onDestroy();
     }
-
-
 }

@@ -1,12 +1,14 @@
-package org.tensorflow.lite.examples.facerecognition;
+package org.tensorflow.lite.examples.facerecognition.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.os.Vibrator;
 import android.speech.tts.TextToSpeech;
 import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
@@ -17,6 +19,8 @@ import android.widget.TextView;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.tensorflow.lite.examples.facerecognition.R;
+import org.tensorflow.lite.examples.facerecognition.TimerCount;
 
 import java.io.BufferedReader;
 import java.io.InputStream;
@@ -50,6 +54,8 @@ public class CheckActivity extends AppCompatActivity {
     private Button pay_btn;
     private Button cancel_btn;
 
+    private Vibrator vibrator;
+
     //일정 시간 터치 없을시 자동 처음 화면 돌아가기 위한 코드
     private int count = TimerCount.COUNT;
     private CountDownTimer countDownTimer;
@@ -73,32 +79,54 @@ public class CheckActivity extends AppCompatActivity {
 
         mArrayList = new ArrayList<>();
 
+        SelectCheck task = new SelectCheck();
+        task.execute( TimerCount.starttime);
 
         tts = new TextToSpeech(this, new TextToSpeech.OnInitListener() {
             @Override
             public void onInit(int status) {
                 pay_btn.setEnabled(true);
                 cancel_btn.setEnabled(true);
-                String text = "주문내역 확인 후 결제 취소를 선택해주세요";
+
+                String text = "주문내역이 맞는지 확인해주세요.";
                 Locale locale = Locale.getDefault();
                 tts.setLanguage(locale);
+                tts.speak(text, TextToSpeech.QUEUE_ADD, null, "id1");
+
+                for (int i = 0; i < mArrayList.size(); i++) {
+                    String text2 = mArrayList.get(i).get(TAG_TEMP) + mArrayList.get(i).get(TAG_NAME)
+                            + Integer.valueOf(mArrayList.get(i).get(TAG_COUNT)) + "개" + mArrayList.get(i).get(TAG_TOTAL) + "원";
+                    tts.speak(text2, TextToSpeech.QUEUE_ADD, null, null);
+                }
+
+                text = mArrayList.get(0).get(TAG_WHERE) + "이고 총가격은" + mArrayList.get(0).get(TAG_REAL_TOTAL)+
+                        "원. 결제를 원하면 화면의 상단을, 취소를 원하면 하단을 클릭해주세요.";
                 tts.speak(text, TextToSpeech.QUEUE_ADD, null, "id1");
 
             }
         });
 
 
-        SelectCheck task = new SelectCheck();
-        task.execute( TimerCount.starttime);
+
 
         pay_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                vibrator = (Vibrator)getSystemService(Context.VIBRATOR_SERVICE);
+                vibrator.vibrate(100); // 0.1초간 진동
 
-                String text = "주문내역";
                 Locale locale = Locale.getDefault();
                 tts.setLanguage(locale);
-                tts.speak(text, TextToSpeech.QUEUE_FLUSH, null, "id1");
+
+                for (int i = 0; i < mArrayList.size(); i++) {
+                    String text2 = mArrayList.get(i).get(TAG_TEMP) + mArrayList.get(i).get(TAG_NAME)
+                            + Integer.valueOf(mArrayList.get(i).get(TAG_COUNT)) + "개" + mArrayList.get(i).get(TAG_TOTAL) + "원";
+                    tts.speak(text2, TextToSpeech.QUEUE_ADD, null, null);
+                }
+
+                String text = mArrayList.get(0).get(TAG_WHERE) + "이고 총가격은" + mArrayList.get(0).get(TAG_REAL_TOTAL)+
+                        "원. 결제를 원하면 화면의 상단을, 취소를 원하면 하단을 클릭해주세요.";
+                tts.speak(text, TextToSpeech.QUEUE_ADD, null, "id1");
             }
         });
 
@@ -116,6 +144,8 @@ public class CheckActivity extends AppCompatActivity {
         cancel_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                vibrator = (Vibrator)getSystemService(Context.VIBRATOR_SERVICE);
+                vibrator.vibrate(100); // 0.1초간 진동
 
                 String text = "취소";
                 Locale locale = Locale.getDefault();
@@ -282,19 +312,13 @@ public class CheckActivity extends AppCompatActivity {
 
 
     private void showResult() {
-        tts = new TextToSpeech(this, new TextToSpeech.OnInitListener() {
-            @Override
-            public void onInit(int status) {
-                if (status == TextToSpeech.SUCCESS) {
-                    Locale locale = Locale.getDefault();
-                    tts.setLanguage(locale);
 
                     try {
                         JSONObject jsonObject = new JSONObject(mJsonString);
                         JSONArray jsonArray = jsonObject.getJSONArray(TAG_JSON);
 
                         for (int i = 0; i < jsonArray.length(); i++) {
-                            try {
+
                                 JSONObject item = jsonArray.getJSONObject(i);
                                 String r_where = item.getString(TAG_WHERE);
                                 String m_temp = item.getString(TAG_TEMP);
@@ -302,9 +326,6 @@ public class CheckActivity extends AppCompatActivity {
                                 String p_count = item.getString(TAG_COUNT);
                                 String total_price = item.getString(TAG_TOTAL);
                                 String real_total_price = item.getString(TAG_REAL_TOTAL);
-
-                                String text = "온도는" + m_temp + "이고 메뉴명은" + m_name + "이고 메뉴 갯수는" + Integer.valueOf(p_count) + "개 입니다.";
-                                tts.speak(text, TextToSpeech.QUEUE_ADD, null, null);
 
                                 HashMap<String, String> hashMap = new HashMap<>();
                                 hashMap.put(TAG_WHERE, r_where);
@@ -315,29 +336,10 @@ public class CheckActivity extends AppCompatActivity {
                                 hashMap.put(TAG_REAL_TOTAL, real_total_price);
                                 mArrayList.add(hashMap);
 
-                                if(i==jsonArray.length()-1){
-
-                                    tts2 = new TextToSpeech(getApplicationContext(), new TextToSpeech.OnInitListener() {
-                                        @Override
-                                        public void onInit(int status) {
-                                            String text = "포장/매장 중 " + r_where + "이고 총가격은 "+ real_total_price +"입니다.";
-                                            Locale locale = Locale.getDefault();
-                                            tts2.setLanguage(locale);
-                                            tts2.speak(text, TextToSpeech.QUEUE_ADD, null, null);
-
-                                        }
-                                    });
-
-                                }
-                            } catch (JSONException e) {
-                                e.printStackTrace();
-                            }
                         }
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
-                }
-            }
-        });
+
     }
 }

@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:layout_margin="@dimen/pageMargin"
     android:orientation="vertical"
-    tools:context=".SelectModeActivity">
+    tools:context=".activity.SelectModeActivity">
 
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/select_mode_viewpager"

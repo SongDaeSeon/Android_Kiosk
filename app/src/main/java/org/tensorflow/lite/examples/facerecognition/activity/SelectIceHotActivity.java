@@ -1,13 +1,18 @@
-package org.tensorflow.lite.examples.facerecognition;
+package org.tensorflow.lite.examples.facerecognition.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.os.Vibrator;
 import android.speech.tts.TextToSpeech;
 import android.view.View;
 import android.widget.Button;
+
+import org.tensorflow.lite.examples.facerecognition.R;
+import org.tensorflow.lite.examples.facerecognition.TimerCount;
 
 import java.util.Locale;
 
@@ -23,6 +28,8 @@ public class SelectIceHotActivity extends AppCompatActivity {
     //일정 시간 터치 없을시 자동 처음 화면 돌아가기 위한 코드
     private int count = TimerCount.COUNT;
     private CountDownTimer countDownTimer;
+
+    private Vibrator vibrator;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,7 +52,7 @@ public class SelectIceHotActivity extends AppCompatActivity {
             public void onInit(int status) {
                 button_ice.setEnabled(true);
                 button_hot.setEnabled(true);
-                String text = "아이스 핫을 선택해 주세요";
+                String text = "아이스/ 핫을 선택해주세요. 아이스를 원하면 화면의 상단을, 핫을 원하면 하단을 클릭해주세요";
                 Locale locale = Locale.getDefault();
                 tts.setLanguage(locale);
                 tts.speak(text, TextToSpeech.QUEUE_FLUSH, null, "id1");
@@ -54,6 +61,9 @@ public class SelectIceHotActivity extends AppCompatActivity {
         button_ice.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                vibrator = (Vibrator)getSystemService(Context.VIBRATOR_SERVICE);
+                vibrator.vibrate(100); // 0.1초간 진동
 
                 String text = "아이스";
                 Locale locale = Locale.getDefault();
@@ -79,6 +89,8 @@ public class SelectIceHotActivity extends AppCompatActivity {
         button_hot.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                vibrator = (Vibrator)getSystemService(Context.VIBRATOR_SERVICE);
+                vibrator.vibrate(100); // 0.1초간 진동
 
                 String text = "핫";
                 Locale locale = Locale.getDefault();

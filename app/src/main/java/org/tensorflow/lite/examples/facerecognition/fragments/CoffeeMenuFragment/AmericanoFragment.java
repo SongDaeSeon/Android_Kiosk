@@ -1,36 +1,33 @@
 package org.tensorflow.lite.examples.facerecognition.fragments.CoffeeMenuFragment;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
-import android.graphics.Typeface;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-
+import android.os.Vibrator;
 import android.speech.tts.TextToSpeech;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.style.ForegroundColorSpan;
 import android.text.style.RelativeSizeSpan;
-import android.text.style.StyleSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
-import org.tensorflow.lite.examples.facerecognition.CoffeeActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+
 import org.tensorflow.lite.examples.facerecognition.R;
-import org.tensorflow.lite.examples.facerecognition.SelectIceHotActivity;
-import org.tensorflow.lite.examples.facerecognition.SelectWhereActivity;
-import org.tensorflow.lite.examples.facerecognition.fragments.DrinkFragment.CoffeeFragment;
+import org.tensorflow.lite.examples.facerecognition.activity.SelectIceHotActivity;
 
 import java.util.Locale;
 
 public class AmericanoFragment extends Fragment {
     private TextToSpeech tts;
     private Button americane_btn;
-    String text = "아메리카노 1500원";
+    private Vibrator vibrator;
+    String text = "좌우로 화면을 넘겨 커피 종류 중 하나를 선택해주세요. 현재 화면은 아메리카노 1500원 입니다.";
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -43,6 +40,8 @@ public class AmericanoFragment extends Fragment {
         americane_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                vibrator = (Vibrator) getActivity().getSystemService(Context.VIBRATOR_SERVICE);
+                vibrator.vibrate(100); // 0.1초간 진동
 
                 Locale locale = Locale.getDefault();
                 tts.setLanguage(locale);
@@ -99,7 +98,6 @@ public class AmericanoFragment extends Fragment {
                 Locale locale = Locale.getDefault();
                 tts.setLanguage(locale);
 
-                String text = "아메리카노 1500원";
                 tts.speak(text, TextToSpeech.QUEUE_FLUSH, null, "id1");
 
             }

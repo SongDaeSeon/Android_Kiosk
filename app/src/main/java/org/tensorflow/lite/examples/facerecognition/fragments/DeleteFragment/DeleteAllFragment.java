@@ -1,13 +1,11 @@
 package org.tensorflow.lite.examples.facerecognition.fragments.DeleteFragment;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-
+import android.os.Vibrator;
 import android.speech.tts.TextToSpeech;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -15,10 +13,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+
 import org.tensorflow.lite.examples.facerecognition.R;
-import org.tensorflow.lite.examples.facerecognition.SelectDrinkActivity;
-import org.tensorflow.lite.examples.facerecognition.SelectWhereActivity;
 import org.tensorflow.lite.examples.facerecognition.TimerCount;
+import org.tensorflow.lite.examples.facerecognition.activity.SelectWhereActivity;
 
 import java.io.BufferedReader;
 import java.io.InputStream;
@@ -33,6 +33,7 @@ public class DeleteAllFragment extends Fragment {
     private TextToSpeech tts;
     private Button delete_all_btn;
     String text = "전체삭제";
+    private Vibrator vibrator;
 
     private static String TAG = "phpquerytest";
     private static final String TAG_JSON = "cwnu";
@@ -48,6 +49,9 @@ public class DeleteAllFragment extends Fragment {
         delete_all_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                vibrator = (Vibrator) getActivity().getSystemService(Context.VIBRATOR_SERVICE);
+                vibrator.vibrate(100); // 0.1초간 진동
 
                 Locale locale = Locale.getDefault();
                 tts.setLanguage(locale);

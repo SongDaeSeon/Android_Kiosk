@@ -8,6 +8,7 @@
     <uses-feature android:name="android.hardware.camera" /> <!-- Declare permissions -->
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.VIBRATE" />
 
     <application
         android:allowBackup="true"
@@ -20,7 +21,7 @@
         android:usesCleartextTraffic="true"
         tools:ignore="AllowBackup">
         <activity
-            android:name=".RecommendActivity"
+            android:name=".activity.RecommendActivity"
             android:exported="true"
             android:theme="@style/FullScreenTheme">
             <meta-data
@@ -28,7 +29,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".CheckActivity"
+            android:name=".activity.CheckActivity"
             android:exported="true"
             android:theme="@style/FullScreenTheme">
             <meta-data
@@ -36,7 +37,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".FinishActivity"
+            android:name=".activity.FinishActivity"
             android:exported="true"
             android:theme="@style/FullScreenTheme">
             <meta-data
@@ -44,7 +45,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".PayActivity"
+            android:name=".activity.PayActivity"
             android:exported="true"
             android:theme="@style/FullScreenTheme">
             <meta-data
@@ -52,7 +53,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".DeleteActivity"
+            android:name=".activity.DeleteActivity"
             android:exported="true"
             android:theme="@style/FullScreenTheme">
             <meta-data
@@ -60,7 +61,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".BasketActivity"
+            android:name=".activity.BasketActivity"
             android:exported="true"
             android:theme="@style/FullScreenTheme">
             <meta-data
@@ -68,7 +69,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".SelectModeActivity"
+            android:name=".activity.SelectModeActivity"
             android:exported="true"
             android:theme="@style/FullScreenTheme">
             <meta-data
@@ -76,7 +77,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".SelectIceHotActivity"
+            android:name=".activity.SelectIceHotActivity"
             android:exported="true"
             android:theme="@style/FullScreenTheme">
             <meta-data
@@ -84,7 +85,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".DessertActivity"
+            android:name=".activity.DessertActivity"
             android:exported="true"
             android:theme="@style/FullScreenTheme">
             <meta-data
@@ -92,7 +93,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".JuiceActivity"
+            android:name=".activity.JuiceActivity"
             android:exported="true"
             android:theme="@style/FullScreenTheme">
             <meta-data
@@ -100,7 +101,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".AdeActivity"
+            android:name=".activity.AdeActivity"
             android:exported="true"
             android:theme="@style/FullScreenTheme">
             <meta-data
@@ -108,7 +109,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".TeaActivity"
+            android:name=".activity.TeaActivity"
             android:exported="true"
             android:theme="@style/FullScreenTheme">
             <meta-data
@@ -116,7 +117,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".SmoothieActivity"
+            android:name=".activity.SmoothieActivity"
             android:exported="true"
             android:theme="@style/FullScreenTheme">
             >
@@ -125,7 +126,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".LatteActivity"
+            android:name=".activity.LatteActivity"
             android:exported="true"
             android:theme="@style/FullScreenTheme">
             <meta-data
@@ -133,7 +134,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".CoffeeActivity"
+            android:name=".activity.CoffeeActivity"
             android:exported="true"
             android:theme="@style/FullScreenTheme">
             <meta-data
@@ -141,7 +142,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".SelectDrinkActivity"
+            android:name=".activity.SelectDrinkActivity"
             android:exported="true"
             android:theme="@style/FullScreenTheme">
             <meta-data
@@ -149,7 +150,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".SelectWhereActivity"
+            android:name=".activity.SelectWhereActivity"
             android:exported="true"
             android:theme="@style/FullScreenTheme">
             <meta-data
@@ -157,7 +158,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".StartActivity"
+            android:name=".activity.StartActivity"
             android:exported="true"
             android:theme="@style/FullScreenTheme">
             <meta-data
@@ -165,7 +166,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".MainActivity"
+            android:name=".activity.MainActivity"
             android:clearTaskOnLaunch="true"
             android:configChanges="orientation|screenLayout|screenSize|smallestScreenSize"
             android:exported="true"

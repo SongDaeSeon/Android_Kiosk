@@ -1,4 +1,4 @@
-package org.tensorflow.lite.examples.facerecognition;
+package org.tensorflow.lite.examples.facerecognition.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -7,26 +7,29 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.speech.tts.TextToSpeech;
 import android.widget.Button;
+
+import org.tensorflow.lite.examples.facerecognition.R;
+import org.tensorflow.lite.examples.facerecognition.TimerCount;
+
 import java.util.Locale;
 
-public class PayActivity extends AppCompatActivity {
+public class FinishActivity extends AppCompatActivity {
 
     private TextToSpeech tts;
-    private Button pay_btn1;
+    private Button fin_btn;
 
     Handler handler = new Handler();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_pay);
+        setContentView(R.layout.activity_finish);
 
-        pay_btn1 = (Button) findViewById(R.id.pay_btn1);
-
+        fin_btn = (Button) findViewById(R.id.fin_btn);
         tts = new TextToSpeech(this, new TextToSpeech.OnInitListener() {
             @Override
             public void onInit(int status) {
-                pay_btn1.setEnabled(true);
-                String text = "IC카드를 삽입하시길 바랍니다";
+                fin_btn.setEnabled(true);
+                String text = "주문이 완료되었습니다. 주문번호는"+ TimerCount.ORDER_COUNT +"입니다.";
                 Locale locale = Locale.getDefault();
                 tts.setLanguage(locale);
                 tts.speak(text, TextToSpeech.QUEUE_FLUSH, null, "id1");
@@ -35,13 +38,14 @@ public class PayActivity extends AppCompatActivity {
                 {
                     @Override
                     public void run() {
-                        Intent intent = new Intent(PayActivity.this, FinishActivity.class);
+                        Intent intent = new Intent(FinishActivity.this, MainActivity.class);
                         startActivity(intent);
                         finish();
                     }
-                }, 10000);
+                }, 7000);// 7초 정도 딜레이를 준 후 반응 없으면 main으로 돌아감
             }
         });
 
+        TimerCount.ORDER_COUNT++;
     }
 }

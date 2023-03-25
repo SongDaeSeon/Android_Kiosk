@@ -1,29 +1,27 @@
 package org.tensorflow.lite.examples.facerecognition.fragments.DrinkFragment;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.CountDownTimer;
+import android.os.Vibrator;
 import android.speech.tts.TextToSpeech;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
-import org.tensorflow.lite.examples.facerecognition.CoffeeActivity;
-import org.tensorflow.lite.examples.facerecognition.MainActivity;
+import org.tensorflow.lite.examples.facerecognition.activity.CoffeeActivity;
 import org.tensorflow.lite.examples.facerecognition.R;
-import org.tensorflow.lite.examples.facerecognition.StartActivity;
-import org.tensorflow.lite.examples.facerecognition.TimerCount;
 
 import java.util.Locale;
 
 public class CoffeeFragment extends Fragment {
     private TextToSpeech tts;
     private Button button3;
+    private Vibrator vibrator;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -36,6 +34,8 @@ public class CoffeeFragment extends Fragment {
         button3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                vibrator = (Vibrator) getActivity().getSystemService(Context.VIBRATOR_SERVICE);
+                vibrator.vibrate(100); // 0.1초간 진동
                 String text = "커피";
                 Locale locale = Locale.getDefault();
                 tts.setLanguage(locale);

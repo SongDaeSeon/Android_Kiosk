@@ -1,4 +1,4 @@
-package org.tensorflow.lite.examples.facerecognition;
+package org.tensorflow.lite.examples.facerecognition.activity;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,11 +11,13 @@ import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.View;
 
-import org.tensorflow.lite.examples.facerecognition.Adapter.CoffeeAdapter;
+import org.tensorflow.lite.examples.facerecognition.Adapter.TeaAdapter;
+import org.tensorflow.lite.examples.facerecognition.R;
+import org.tensorflow.lite.examples.facerecognition.TimerCount;
 
 import me.relex.circleindicator.CircleIndicator3;
 
-public class CoffeeActivity extends AppCompatActivity {
+public class TeaActivity extends AppCompatActivity {
 
     private ViewPager2 mPager;
     private FragmentStateAdapter pagerAdapter;
@@ -29,15 +31,15 @@ public class CoffeeActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_coffee);
+        setContentView(R.layout.activity_tea);
 
         //ViewPager2
-        mPager = findViewById(R.id.coffee_viewpager);
+        mPager = findViewById(R.id.tea_viewpager);
         //Adapter
-        pagerAdapter = new CoffeeAdapter(this, num_page);
+        pagerAdapter = new TeaAdapter(this, num_page);
         mPager.setAdapter(pagerAdapter);
         //Indicator
-        mIndicator = findViewById(R.id.coffee_indicator);
+        mIndicator = findViewById(R.id.tea_indicator);
         mIndicator.setViewPager(mPager);
         mIndicator.createIndicators(num_page,0);
         //ViewPager Setting
@@ -63,6 +65,7 @@ public class CoffeeActivity extends AppCompatActivity {
                 super.onPageSelected(position);
                 mIndicator.animatePageSelected(position%num_page);
             }
+
         });
 
         final float pageMargin= getResources().getDimensionPixelOffset(R.dimen.pageMargin);
@@ -90,13 +93,14 @@ public class CoffeeActivity extends AppCompatActivity {
                 count --;
             }
             public void onFinish() {
-                Intent intent = new Intent(CoffeeActivity.this, MainActivity.class);
+                Intent intent = new Intent(TeaActivity.this, MainActivity.class);
                 startActivity(intent);
                 finish();
 
             }
         };
     }
+
     @Override
     protected void onPause() {
 
@@ -119,4 +123,5 @@ public class CoffeeActivity extends AppCompatActivity {
 
         super.onDestroy();
     }
+
 }

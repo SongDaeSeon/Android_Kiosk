@@ -6,7 +6,7 @@
     android:layout_height="fill_parent"
     android:orientation="vertical"
     android:layout_margin="@dimen/pageMargin"
-    tools:context=".BasketActivity">
+    tools:context=".activity.BasketActivity">
 
     <Button
         android:id="@+id/basket_btn"

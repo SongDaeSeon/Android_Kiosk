@@ -1,12 +1,10 @@
 package org.tensorflow.lite.examples.facerecognition.fragments.TeaMenuFragment;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-
+import android.os.Vibrator;
 import android.speech.tts.TextToSpeech;
 import android.text.Spannable;
 import android.text.SpannableString;
@@ -17,16 +15,18 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+
 import org.tensorflow.lite.examples.facerecognition.R;
-import org.tensorflow.lite.examples.facerecognition.SelectModeActivity;
-import org.tensorflow.lite.examples.facerecognition.SelectWhereActivity;
-import org.tensorflow.lite.examples.facerecognition.fragments.LatteMenuFragment.BlackteaLatteFragment;
+import org.tensorflow.lite.examples.facerecognition.activity.SelectModeActivity;
 
 import java.util.Locale;
 
 public class PeachIcedTeaFragment extends Fragment {
     private TextToSpeech tts;
     private Button peach_iced_tea_btn;
+    private Vibrator vibrator;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -39,6 +39,8 @@ public class PeachIcedTeaFragment extends Fragment {
         peach_iced_tea_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                vibrator = (Vibrator) getActivity().getSystemService(Context.VIBRATOR_SERVICE);
+                vibrator.vibrate(100); // 0.1초간 진동
                 String text = "복숭아 아이스티 2000원";
                 Locale locale = Locale.getDefault();
                 tts.setLanguage(locale);

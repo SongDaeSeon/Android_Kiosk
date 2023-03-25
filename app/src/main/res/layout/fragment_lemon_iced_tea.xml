@@ -12,7 +12,7 @@
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:layout_weight="1"
-        android:text="레몬아이스티\n2000원"
+        android:text="레몬\n아이스티\n2000원"
         android:lineSpacingExtra="@dimen/linespace"
         android:background="@color/yellow"
         android:textColor="@color/black"

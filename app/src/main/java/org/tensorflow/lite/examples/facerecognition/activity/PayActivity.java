@@ -1,4 +1,4 @@
-package org.tensorflow.lite.examples.facerecognition;
+package org.tensorflow.lite.examples.facerecognition.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -8,25 +8,28 @@ import android.os.Handler;
 import android.speech.tts.TextToSpeech;
 import android.widget.Button;
 
+import org.tensorflow.lite.examples.facerecognition.R;
+
 import java.util.Locale;
 
-public class FinishActivity extends AppCompatActivity {
+public class PayActivity extends AppCompatActivity {
 
     private TextToSpeech tts;
-    private Button fin_btn;
+    private Button pay_btn1;
 
     Handler handler = new Handler();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_finish);
+        setContentView(R.layout.activity_pay);
 
-        fin_btn = (Button) findViewById(R.id.fin_btn);
+        pay_btn1 = (Button) findViewById(R.id.pay_btn1);
+
         tts = new TextToSpeech(this, new TextToSpeech.OnInitListener() {
             @Override
             public void onInit(int status) {
-                fin_btn.setEnabled(true);
-                String text = "결제가 완료 되었습니다.";
+                pay_btn1.setEnabled(true);
+                String text = "IC카드를 삽입하시길 바랍니다";
                 Locale locale = Locale.getDefault();
                 tts.setLanguage(locale);
                 tts.speak(text, TextToSpeech.QUEUE_FLUSH, null, "id1");
@@ -35,12 +38,13 @@ public class FinishActivity extends AppCompatActivity {
                 {
                     @Override
                     public void run() {
-                        Intent intent = new Intent(FinishActivity.this, MainActivity.class);
+                        Intent intent = new Intent(PayActivity.this, FinishActivity.class);
                         startActivity(intent);
                         finish();
                     }
-                }, 10000);// 18초 정도 딜레이를 준 후 반응 없으면 main으로 돌아감
+                }, 7000);
             }
         });
+
     }
 }

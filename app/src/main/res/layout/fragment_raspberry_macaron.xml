@@ -12,7 +12,7 @@
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:layout_weight="1"
-        android:text="산딸기마카롱\n1800원"
+        android:text="산딸기\n마카롱\n1800원"
         android:lineSpacingExtra="@dimen/linespace"
         android:background="@color/yellow"
         android:textColor="@color/black"

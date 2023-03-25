@@ -1,4 +1,4 @@
-package org.tensorflow.lite.examples.facerecognition;
+package org.tensorflow.lite.examples.facerecognition.activity;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,15 +11,17 @@ import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.View;
 
-import org.tensorflow.lite.examples.facerecognition.Adapter.JuiceAdapter;
+import org.tensorflow.lite.examples.facerecognition.Adapter.RecommendAdapter;
+import org.tensorflow.lite.examples.facerecognition.R;
+import org.tensorflow.lite.examples.facerecognition.TimerCount;
 
 import me.relex.circleindicator.CircleIndicator3;
 
-public class JuiceActivity extends AppCompatActivity {
+public class RecommendActivity extends AppCompatActivity {
 
     private ViewPager2 mPager;
     private FragmentStateAdapter pagerAdapter;
-    private int num_page = 9;
+    private int num_page = 4;//
     private CircleIndicator3 mIndicator;
 
     //일정 시간 터치 없을시 자동 처음 화면 돌아가기 위한 코드
@@ -29,25 +31,27 @@ public class JuiceActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_jucie);
+        setContentView(R.layout.activity_recommend);
 
         //ViewPager2
-        mPager = findViewById(R.id.jucie_viewpager);
+        mPager = findViewById(R.id.recommend_viewpager);
         //Adapter
-        pagerAdapter = new JuiceAdapter(this, num_page);
+        pagerAdapter = new RecommendAdapter(this, num_page);
         mPager.setAdapter(pagerAdapter);
         //Indicator
-        mIndicator = findViewById(R.id.jucie_indicator);
+        mIndicator = findViewById(R.id.recommend_indicator);
         mIndicator.setViewPager(mPager);
         mIndicator.createIndicators(num_page,0);
         //ViewPager Setting
         mPager.setOrientation(ViewPager2.ORIENTATION_HORIZONTAL);
 
-        mPager.setCurrentItem(999,false);
+        mPager.setCurrentItem(1000,false);
         mPager.setOffscreenPageLimit(ViewPager2.OFFSCREEN_PAGE_LIMIT_DEFAULT);
 
         countDownTimer();
         countDownTimer.start();
+
+//        textView.setText(TimerCount.R_COUNT);
 
         mPager.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
             @Override
@@ -85,19 +89,21 @@ public class JuiceActivity extends AppCompatActivity {
             }
         });
     }
+
     public void countDownTimer(){
         countDownTimer = new CountDownTimer(TimerCount.MILLISINFUTURE, TimerCount.COUNT_DOWN_INTERVAL) {
             public void onTick(long millisUntilFinished) {
                 count --;
             }
             public void onFinish() {
-                Intent intent = new Intent(JuiceActivity.this, MainActivity.class);
+                Intent intent = new Intent(RecommendActivity.this, MainActivity.class);
                 startActivity(intent);
                 finish();
 
             }
         };
     }
+
     @Override
     protected void onPause() {
 
@@ -120,5 +126,4 @@ public class JuiceActivity extends AppCompatActivity {
 
         super.onDestroy();
     }
-
 }

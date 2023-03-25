@@ -9,7 +9,8 @@ public class TimerCount {
     public static final int MILLISINFUTURE = 120 * 1000;
     public static final int COUNT_DOWN_INTERVAL = 1000;//1초
     public static final int COUNT = 119 * 1000;
-    public static final String IP = "192.168.0.134";
+    public static int ORDER_COUNT = 1;
+    public static final String IP = "192.168.0.9";
     public static String starttime;
     public static String R_COUNT;
     public static String NUM_PAGE;

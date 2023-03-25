@@ -1,25 +1,27 @@
-package org.tensorflow.lite.examples.facerecognition;
-
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.view.ViewCompat;
-import androidx.viewpager2.adapter.FragmentStateAdapter;
-import androidx.viewpager2.widget.ViewPager2;
+package org.tensorflow.lite.examples.facerecognition.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.View;
 
-import org.tensorflow.lite.examples.facerecognition.Adapter.DessertAdapter;
+import androidx.annotation.NonNull;
+import androidx.core.view.ViewCompat;
+import androidx.fragment.app.FragmentActivity;
+import androidx.viewpager2.adapter.FragmentStateAdapter;
+import androidx.viewpager2.widget.ViewPager2;
+
+import org.tensorflow.lite.examples.facerecognition.Adapter.Myadapter;
+import org.tensorflow.lite.examples.facerecognition.R;
+import org.tensorflow.lite.examples.facerecognition.TimerCount;
 
 import me.relex.circleindicator.CircleIndicator3;
 
-public class DessertActivity extends AppCompatActivity {
+public class SelectDrinkActivity extends FragmentActivity {
 
     private ViewPager2 mPager;
     private FragmentStateAdapter pagerAdapter;
-    private int num_page = 16;
+    private int num_page = 8;
     private CircleIndicator3 mIndicator;
 
     //일정 시간 터치 없을시 자동 처음 화면 돌아가기 위한 코드
@@ -29,21 +31,21 @@ public class DessertActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_dessert);
+        setContentView(R.layout.activity_select_drink);
 
         //ViewPager2
-        mPager = findViewById(R.id.dessert_viewpager);
+        mPager = findViewById(R.id.viewpager);
         //Adapter
-        pagerAdapter = new DessertAdapter(this, num_page);
+        pagerAdapter = new Myadapter(this, num_page);
         mPager.setAdapter(pagerAdapter);
         //Indicator
-        mIndicator = findViewById(R.id.dessert_indicator);
+        mIndicator = findViewById(R.id.indicator);
         mIndicator.setViewPager(mPager);
         mIndicator.createIndicators(num_page,0);
         //ViewPager Setting
         mPager.setOrientation(ViewPager2.ORIENTATION_HORIZONTAL);
 
-        mPager.setCurrentItem(1008,false);
+        mPager.setCurrentItem(1000,false);
         mPager.setOffscreenPageLimit(ViewPager2.OFFSCREEN_PAGE_LIMIT_DEFAULT);
 
         countDownTimer();
@@ -84,20 +86,22 @@ public class DessertActivity extends AppCompatActivity {
                 }
             }
         });
+
     }
+
     public void countDownTimer(){
         countDownTimer = new CountDownTimer(TimerCount.MILLISINFUTURE, TimerCount.COUNT_DOWN_INTERVAL) {
             public void onTick(long millisUntilFinished) {
                 count --;
             }
             public void onFinish() {
-                Intent intent = new Intent(DessertActivity.this, MainActivity.class);
+                Intent intent = new Intent(SelectDrinkActivity.this, MainActivity.class);
                 startActivity(intent);
                 finish();
-
             }
         };
     }
+
     @Override
     protected void onPause() {
 

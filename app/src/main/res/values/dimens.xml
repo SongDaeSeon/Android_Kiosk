@@ -18,7 +18,7 @@
 
     <dimen name="stroke_small">4dp</dimen>
     <dimen name="round_button_medium">64dp</dimen>
-    <dimen name="default_size">35sp</dimen>
+    <dimen name="default_size">76sp</dimen>
     <dimen name="pageMargin">20dp</dimen>
     <dimen name="linespace">15dp</dimen>
     <dimen name="offset">20dp</dimen>

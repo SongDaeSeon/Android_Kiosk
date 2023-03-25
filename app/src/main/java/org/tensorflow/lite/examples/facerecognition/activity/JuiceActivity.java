@@ -1,4 +1,4 @@
-package org.tensorflow.lite.examples.facerecognition;
+package org.tensorflow.lite.examples.facerecognition.activity;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,15 +11,17 @@ import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.View;
 
-import org.tensorflow.lite.examples.facerecognition.Adapter.TeaAdapter;
+import org.tensorflow.lite.examples.facerecognition.Adapter.JuiceAdapter;
+import org.tensorflow.lite.examples.facerecognition.R;
+import org.tensorflow.lite.examples.facerecognition.TimerCount;
 
 import me.relex.circleindicator.CircleIndicator3;
 
-public class TeaActivity extends AppCompatActivity {
+public class JuiceActivity extends AppCompatActivity {
 
     private ViewPager2 mPager;
     private FragmentStateAdapter pagerAdapter;
-    private int num_page = 11;
+    private int num_page = 9;
     private CircleIndicator3 mIndicator;
 
     //일정 시간 터치 없을시 자동 처음 화면 돌아가기 위한 코드
@@ -29,21 +31,21 @@ public class TeaActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_tea);
+        setContentView(R.layout.activity_jucie);
 
         //ViewPager2
-        mPager = findViewById(R.id.tea_viewpager);
+        mPager = findViewById(R.id.jucie_viewpager);
         //Adapter
-        pagerAdapter = new TeaAdapter(this, num_page);
+        pagerAdapter = new JuiceAdapter(this, num_page);
         mPager.setAdapter(pagerAdapter);
         //Indicator
-        mIndicator = findViewById(R.id.tea_indicator);
+        mIndicator = findViewById(R.id.jucie_indicator);
         mIndicator.setViewPager(mPager);
         mIndicator.createIndicators(num_page,0);
         //ViewPager Setting
         mPager.setOrientation(ViewPager2.ORIENTATION_HORIZONTAL);
 
-        mPager.setCurrentItem(1001,false);
+        mPager.setCurrentItem(999,false);
         mPager.setOffscreenPageLimit(ViewPager2.OFFSCREEN_PAGE_LIMIT_DEFAULT);
 
         countDownTimer();
@@ -91,14 +93,13 @@ public class TeaActivity extends AppCompatActivity {
                 count --;
             }
             public void onFinish() {
-                Intent intent = new Intent(TeaActivity.this, MainActivity.class);
+                Intent intent = new Intent(JuiceActivity.this, MainActivity.class);
                 startActivity(intent);
                 finish();
 
             }
         };
     }
-
     @Override
     protected void onPause() {
 

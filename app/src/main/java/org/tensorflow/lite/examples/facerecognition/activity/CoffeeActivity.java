@@ -1,4 +1,4 @@
-package org.tensorflow.lite.examples.facerecognition;
+package org.tensorflow.lite.examples.facerecognition.activity;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,15 +11,17 @@ import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.View;
 
-import org.tensorflow.lite.examples.facerecognition.Adapter.LatteAdapter;
+import org.tensorflow.lite.examples.facerecognition.Adapter.CoffeeAdapter;
+import org.tensorflow.lite.examples.facerecognition.R;
+import org.tensorflow.lite.examples.facerecognition.TimerCount;
 
 import me.relex.circleindicator.CircleIndicator3;
 
-public class LatteActivity extends AppCompatActivity {
+public class CoffeeActivity extends AppCompatActivity {
 
     private ViewPager2 mPager;
     private FragmentStateAdapter pagerAdapter;
-    private int num_page = 7;
+    private int num_page = 11;
     private CircleIndicator3 mIndicator;
 
     //일정 시간 터치 없을시 자동 처음 화면 돌아가기 위한 코드
@@ -29,15 +31,15 @@ public class LatteActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_latte);
+        setContentView(R.layout.activity_coffee);
 
-      //ViewPager2
-        mPager = findViewById(R.id.latte_viewpager);
+        //ViewPager2
+        mPager = findViewById(R.id.coffee_viewpager);
         //Adapter
-        pagerAdapter = new LatteAdapter(this, num_page);
+        pagerAdapter = new CoffeeAdapter(this, num_page);
         mPager.setAdapter(pagerAdapter);
         //Indicator
-        mIndicator = findViewById(R.id.latte_indicator);
+        mIndicator = findViewById(R.id.coffee_indicator);
         mIndicator.setViewPager(mPager);
         mIndicator.createIndicators(num_page,0);
         //ViewPager Setting
@@ -63,7 +65,6 @@ public class LatteActivity extends AppCompatActivity {
                 super.onPageSelected(position);
                 mIndicator.animatePageSelected(position%num_page);
             }
-
         });
 
         final float pageMargin= getResources().getDimensionPixelOffset(R.dimen.pageMargin);
@@ -91,7 +92,7 @@ public class LatteActivity extends AppCompatActivity {
                 count --;
             }
             public void onFinish() {
-                Intent intent = new Intent(LatteActivity.this, MainActivity.class);
+                Intent intent = new Intent(CoffeeActivity.this, MainActivity.class);
                 startActivity(intent);
                 finish();
 

@@ -1,12 +1,10 @@
 package org.tensorflow.lite.examples.facerecognition.fragments.SmoothieMenuFragment;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-
+import android.os.Vibrator;
 import android.speech.tts.TextToSpeech;
 import android.text.Spannable;
 import android.text.SpannableString;
@@ -17,16 +15,18 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+
 import org.tensorflow.lite.examples.facerecognition.R;
-import org.tensorflow.lite.examples.facerecognition.SelectModeActivity;
-import org.tensorflow.lite.examples.facerecognition.SelectWhereActivity;
-import org.tensorflow.lite.examples.facerecognition.fragments.LatteMenuFragment.BlackteaLatteFragment;
+import org.tensorflow.lite.examples.facerecognition.activity.SelectModeActivity;
 
 import java.util.Locale;
 
 public class YogurtSmoothieFragment extends Fragment {
     private TextToSpeech tts;
     private Button yogurt_smoothie_btn;
+    private Vibrator vibrator;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -39,7 +39,9 @@ public class YogurtSmoothieFragment extends Fragment {
         yogurt_smoothie_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String text = "요거트 스무디 3300원";
+                vibrator = (Vibrator) getActivity().getSystemService(Context.VIBRATOR_SERVICE);
+                vibrator.vibrate(100); // 0.1초간 진동
+                String text = "요거트스무디 3300원";
                 Locale locale = Locale.getDefault();
                 tts.setLanguage(locale);
                 tts.speak(text, TextToSpeech.QUEUE_FLUSH, null, "id1");
@@ -94,7 +96,7 @@ public class YogurtSmoothieFragment extends Fragment {
                 Locale locale = Locale.getDefault();
                 tts.setLanguage(locale);
 
-                String text = "요거트 스무디 3300원";
+                String text = "요거트스무디 3300원";
                 tts.speak(text, TextToSpeech.QUEUE_FLUSH, null, "id1");
 
             }

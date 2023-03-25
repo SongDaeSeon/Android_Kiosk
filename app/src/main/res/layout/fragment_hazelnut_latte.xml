@@ -12,7 +12,7 @@
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:layout_weight="1"
-        android:text="헤이즐넛라떼\n2800원"
+        android:text="헤이즐넛\n라떼\n2800원"
         android:lineSpacingExtra="@dimen/linespace"
         android:background="@color/yellow"
         android:textColor="@color/black"

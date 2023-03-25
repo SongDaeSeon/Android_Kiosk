@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:layout_margin="@dimen/pageMargin"
-    tools:context=".JuiceActivity">
+    tools:context=".activity.JuiceActivity">
 
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/jucie_viewpager"

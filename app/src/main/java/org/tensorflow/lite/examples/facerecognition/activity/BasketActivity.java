@@ -1,24 +1,26 @@
-package org.tensorflow.lite.examples.facerecognition;
+package org.tensorflow.lite.examples.facerecognition.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.os.Vibrator;
 import android.speech.tts.TextToSpeech;
 import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ListAdapter;
-import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.tensorflow.lite.examples.facerecognition.R;
+import org.tensorflow.lite.examples.facerecognition.TimerCount;
 
 import java.io.BufferedReader;
 import java.io.InputStream;
@@ -54,6 +56,8 @@ public class BasketActivity extends AppCompatActivity {
     //테스트
     TextView textView;
 
+    private Vibrator vibrator;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -78,21 +82,34 @@ public class BasketActivity extends AppCompatActivity {
             @Override
             public void onInit(int status) {
                 basket_btn.setEnabled(true);
-                String text = "주문목록입니다.";
+                String text = "장바구니 화면입니다." + mArrayList.get(0).get(TAG_WHERE);
                 Locale locale = Locale.getDefault();
                 tts.setLanguage(locale);
-                tts.speak(text, TextToSpeech.QUEUE_FLUSH, null, "id1");
+                tts.speak(text, TextToSpeech.QUEUE_ADD, null, "id1");
 
+                for (int i = 0; i < mArrayList.size(); i++) {
+                    String text2 = mArrayList.get(i).get(TAG_TEMP) + mArrayList.get(i).get(TAG_NAME)
+                            + Integer.valueOf(mArrayList.get(i).get(TAG_COUNT)) + "개" + mArrayList.get(i).get(TAG_TOTAL) + "원";
+                    tts.speak(text2, TextToSpeech.QUEUE_ADD, null, null);
                 }
+            }
         });
+
 
         basket_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String text = "테스트입니다";
+
+                vibrator = (Vibrator)getSystemService(Context.VIBRATOR_SERVICE);
+                vibrator.vibrate(100); // 0.1초간 진동
+
                 Locale locale = Locale.getDefault();
                 tts.setLanguage(locale);
-                tts.speak(text, TextToSpeech.QUEUE_FLUSH, null, "id1");
+                for (int i = 0; i < mArrayList.size(); i++) {
+                    String text2 = mArrayList.get(i).get(TAG_TEMP) + mArrayList.get(i).get(TAG_NAME)
+                            + Integer.valueOf(mArrayList.get(i).get(TAG_COUNT)) + "개" + mArrayList.get(i).get(TAG_TOTAL) + "원";
+                    tts.speak(text2, TextToSpeech.QUEUE_ADD, null, null);
+                }
 
             }
         });

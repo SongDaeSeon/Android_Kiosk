@@ -1,35 +1,27 @@
 package org.tensorflow.lite.examples.facerecognition.fragments.SmoothieMenuFragment;
 
+import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.Typeface;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-
+import android.os.Vibrator;
 import android.speech.tts.TextToSpeech;
-import android.text.Spannable;
-import android.text.SpannableString;
-import android.text.style.ForegroundColorSpan;
-import android.text.style.RelativeSizeSpan;
-import android.text.style.StyleSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
-import org.tensorflow.lite.examples.facerecognition.CoffeeActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+
 import org.tensorflow.lite.examples.facerecognition.R;
-import org.tensorflow.lite.examples.facerecognition.SelectDrinkActivity;
-import org.tensorflow.lite.examples.facerecognition.SelectWhereActivity;
-import org.tensorflow.lite.examples.facerecognition.fragments.DrinkFragment.CoffeeFragment;
+import org.tensorflow.lite.examples.facerecognition.activity.SelectDrinkActivity;
 
 import java.util.Locale;
 
 public class NoSmoothieFragment extends Fragment {
     private TextToSpeech tts;
     private Button nosmoothie_btn;
+    private Vibrator vibrator;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -41,6 +33,8 @@ public class NoSmoothieFragment extends Fragment {
         nosmoothie_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                vibrator = (Vibrator) getActivity().getSystemService(Context.VIBRATOR_SERVICE);
+                vibrator.vibrate(100); // 0.1초간 진동
                 String text = "선택안함";
                 Locale locale = Locale.getDefault();
                 tts.setLanguage(locale);

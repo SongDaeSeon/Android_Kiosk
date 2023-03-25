@@ -1,12 +1,10 @@
 package org.tensorflow.lite.examples.facerecognition.fragments.RecommendFragment;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-
+import android.os.Vibrator;
 import android.speech.tts.TextToSpeech;
 import android.text.Spannable;
 import android.text.SpannableString;
@@ -17,9 +15,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+
 import org.tensorflow.lite.examples.facerecognition.R;
-import org.tensorflow.lite.examples.facerecognition.SelectDrinkActivity;
-import org.tensorflow.lite.examples.facerecognition.SelectModeActivity;
+import org.tensorflow.lite.examples.facerecognition.activity.SelectModeActivity;
 
 import java.util.Locale;
 
@@ -27,6 +27,7 @@ public class RecommendMenuFragment extends Fragment {
 
     private TextToSpeech tts;
     private Button recommend_menu_btn;
+    private Vibrator vibrator;
 
     String temp;
     String menu ;
@@ -100,9 +101,25 @@ public class RecommendMenuFragment extends Fragment {
         recommend_menu_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String text = content;
+
+                vibrator = (Vibrator) getActivity().getSystemService(Context.VIBRATOR_SERVICE);
+                vibrator.vibrate(100); // 0.1초간 진동
+
                 Locale locale = Locale.getDefault();
                 tts.setLanguage(locale);
+
+                String text;
+                if(temp.equals("없음")) {
+                    text = menu + price + "원";
+                    SpannableString spannableString = new SpannableString(content);
+
+                }else{
+
+                    text = temp + menu + price + "원";
+                    SpannableString spannableString = new SpannableString(content);
+
+                }
+
                 tts.speak(text, TextToSpeech.QUEUE_FLUSH, null, "id1");
             }
         });
@@ -138,8 +155,19 @@ public class RecommendMenuFragment extends Fragment {
                 Locale locale = Locale.getDefault();
                 tts.setLanguage(locale);
 
-                String text = content;
-                tts.speak(text, TextToSpeech.QUEUE_FLUSH, null, "id1");
+                String text;
+                if(temp.equals("없음")) {
+                    text = menu + price + "원";
+                    SpannableString spannableString = new SpannableString(content);
+
+                }else{
+
+                    text = temp + menu + price + "원";
+                    SpannableString spannableString = new SpannableString(content);
+
+                }
+
+                tts.speak("현재 화면은 "+text +"입니다.", TextToSpeech.QUEUE_FLUSH, null, "id1");
             }
         });
     }

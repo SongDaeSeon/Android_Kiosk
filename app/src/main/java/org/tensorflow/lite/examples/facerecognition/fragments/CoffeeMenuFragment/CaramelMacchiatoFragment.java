@@ -1,12 +1,10 @@
 package org.tensorflow.lite.examples.facerecognition.fragments.CoffeeMenuFragment;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-
+import android.os.Vibrator;
 import android.speech.tts.TextToSpeech;
 import android.text.Spannable;
 import android.text.SpannableString;
@@ -17,15 +15,18 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+
 import org.tensorflow.lite.examples.facerecognition.R;
-import org.tensorflow.lite.examples.facerecognition.SelectIceHotActivity;
-import org.tensorflow.lite.examples.facerecognition.SelectWhereActivity;
+import org.tensorflow.lite.examples.facerecognition.activity.SelectIceHotActivity;
 
 import java.util.Locale;
 
 public class CaramelMacchiatoFragment extends Fragment {
     private TextToSpeech tts;
     private Button caramelmacchiato_btn;
+    private Vibrator vibrator;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -38,7 +39,9 @@ public class CaramelMacchiatoFragment extends Fragment {
         caramelmacchiato_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String text = "캬라멜 마끼야=아또 2800원";
+                vibrator = (Vibrator) getActivity().getSystemService(Context.VIBRATOR_SERVICE);
+                vibrator.vibrate(100); // 0.1초간 진동
+                String text = "캬라멜 마끼아또 2800원";
                 Locale locale = Locale.getDefault();
                 tts.setLanguage(locale);
                 tts.speak(text, TextToSpeech.QUEUE_FLUSH, null, "id1");

@@ -1,18 +1,15 @@
 package org.tensorflow.lite.examples.facerecognition.fragments.DeleteFragment;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-
+import android.os.Vibrator;
 import android.speech.tts.TextToSpeech;
 import android.text.Spannable;
 import android.text.SpannableString;
-import android.text.method.ScrollingMovementMethod;
 import android.text.style.ForegroundColorSpan;
 import android.text.style.RelativeSizeSpan;
 import android.util.Log;
@@ -20,18 +17,17 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.TextView;
-import android.widget.Toast;
+
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.tensorflow.lite.examples.facerecognition.DeleteActivity;
-import org.tensorflow.lite.examples.facerecognition.PayActivity;
 import org.tensorflow.lite.examples.facerecognition.R;
-import org.tensorflow.lite.examples.facerecognition.SelectModeActivity;
-import org.tensorflow.lite.examples.facerecognition.SelectWhereActivity;
 import org.tensorflow.lite.examples.facerecognition.TimerCount;
+import org.tensorflow.lite.examples.facerecognition.activity.SelectModeActivity;
+import org.tensorflow.lite.examples.facerecognition.activity.SelectWhereActivity;
 
 import java.io.BufferedReader;
 import java.io.InputStream;
@@ -58,6 +54,8 @@ public class BlankFragment extends Fragment {
     private static final String TAG_TEMP = "m_temp";
     private static final String TAG_PRICE = "m_price";
     private static String p_count;
+
+    private Vibrator vibrator;
 
 //    //테스트
 //    TextView textView;
@@ -136,9 +134,21 @@ public class BlankFragment extends Fragment {
         blank_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String text = temp + menu + price;
+
+                vibrator = (Vibrator) getActivity().getSystemService(Context.VIBRATOR_SERVICE);
+                vibrator.vibrate(100); // 0.1초간 진동
+
                 Locale locale = Locale.getDefault();
                 tts.setLanguage(locale);
+                String text;
+
+                if(temp.equals("없음")) {
+                    text = "좌우로 화면을 넘겨 메뉴를 확인한 후 길게 눌러 삭제해주세요. 현재 화면은" + menu + price+ "입니다.";
+
+                }else{
+                    text = "좌우로 화면을 넘겨 메뉴를 확인한 후 길게 눌러 삭제해주세요. 현재 화면은" + temp + menu + price+ "입니다.";
+
+                }
                 tts.speak(text, TextToSpeech.QUEUE_FLUSH, null, "id1");
 
             }
@@ -198,8 +208,18 @@ public class BlankFragment extends Fragment {
                 blank_btn.setEnabled(true);
                 Locale locale = Locale.getDefault();
                 tts.setLanguage(locale);
-                String text = temp + menu + price;
+
+                String text;
+
+                if(temp.equals("없음")) {
+                    text = "좌우로 화면을 넘겨 메뉴를 확인한 후 길게 눌러 삭제해주세요. 현재 화면은" + menu + price+ "입니다.";
+
+                }else{
+                    text = "좌우로 화면을 넘겨 메뉴를 확인한 후 길게 눌러 삭제해주세요. 현재 화면은" + temp + menu + price+ "입니다.";
+
+                }
                 tts.speak(text, TextToSpeech.QUEUE_FLUSH, null, "id1");
+
             }
         });
     }

@@ -48,7 +48,7 @@ import org.tensorflow.lite.examples.facerecognition.FaceDB;
 import org.tensorflow.lite.examples.facerecognition.FaceRecognitionPipeline;
 import org.tensorflow.lite.examples.facerecognition.R;
 import org.tensorflow.lite.examples.facerecognition.RecognizedFace;
-import org.tensorflow.lite.examples.facerecognition.StartActivity;
+import org.tensorflow.lite.examples.facerecognition.activity.StartActivity;
 import org.tensorflow.lite.examples.facerecognition.databinding.FragmentCameraBinding;
 import org.tensorflow.lite.examples.facerecognition.tflite.FaceEmbedding;
 

@@ -1,4 +1,4 @@
-package org.tensorflow.lite.examples.facerecognition;
+package org.tensorflow.lite.examples.facerecognition.activity;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,15 +11,17 @@ import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.View;
 
-import org.tensorflow.lite.examples.facerecognition.Adapter.SmoothieAdapter;
+import org.tensorflow.lite.examples.facerecognition.Adapter.AdeAdapter;
+import org.tensorflow.lite.examples.facerecognition.R;
+import org.tensorflow.lite.examples.facerecognition.TimerCount;
 
 import me.relex.circleindicator.CircleIndicator3;
 
-public class SmoothieActivity extends AppCompatActivity {
+public class AdeActivity extends AppCompatActivity {
 
     private ViewPager2 mPager;
     private FragmentStateAdapter pagerAdapter;
-    private int num_page = 4;
+    private int num_page = 5;
     private CircleIndicator3 mIndicator;
 
     //일정 시간 터치 없을시 자동 처음 화면 돌아가기 위한 코드
@@ -29,15 +31,15 @@ public class SmoothieActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_smoothie);
+        setContentView(R.layout.activity_ade);
 
         //ViewPager2
-        mPager = findViewById(R.id.smoothie_viewpager);
+        mPager = findViewById(R.id.ade_viewpager);
         //Adapter
-        pagerAdapter = new SmoothieAdapter(this, num_page);
+        pagerAdapter = new AdeAdapter(this, num_page);
         mPager.setAdapter(pagerAdapter);
         //Indicator
-        mIndicator = findViewById(R.id.smoothie_indicator);
+        mIndicator = findViewById(R.id.ade_indicator);
         mIndicator.setViewPager(mPager);
         mIndicator.createIndicators(num_page,0);
         //ViewPager Setting
@@ -85,13 +87,14 @@ public class SmoothieActivity extends AppCompatActivity {
             }
         });
     }
+
     public void countDownTimer(){
         countDownTimer = new CountDownTimer(TimerCount.MILLISINFUTURE, TimerCount.COUNT_DOWN_INTERVAL) {
             public void onTick(long millisUntilFinished) {
                 count --;
             }
             public void onFinish() {
-                Intent intent = new Intent(SmoothieActivity.this, MainActivity.class);
+                Intent intent = new Intent(AdeActivity.this, MainActivity.class);
                 startActivity(intent);
                 finish();
 
@@ -121,5 +124,4 @@ public class SmoothieActivity extends AppCompatActivity {
 
         super.onDestroy();
     }
-
 }
