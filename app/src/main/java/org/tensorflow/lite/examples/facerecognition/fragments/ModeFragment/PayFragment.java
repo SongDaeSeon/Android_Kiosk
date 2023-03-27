@@ -79,6 +79,16 @@ public class PayFragment extends Fragment {
     }
 
     @Override
+    public void onPause() {
+        super.onPause();
+        if(tts != null){
+            tts.stop();
+            tts.shutdown();
+            tts = null;
+        }
+    }
+
+    @Override
     public void onDestroy() {
         super.onDestroy();
         if(tts != null){

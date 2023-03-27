@@ -1,12 +1,12 @@
 package org.tensorflow.lite.examples.facerecognition.activity;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.speech.tts.TextToSpeech;
 import android.widget.Button;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import org.tensorflow.lite.examples.facerecognition.R;
 import org.tensorflow.lite.examples.facerecognition.TimerCount;
@@ -29,7 +29,7 @@ public class FinishActivity extends AppCompatActivity {
             @Override
             public void onInit(int status) {
                 fin_btn.setEnabled(true);
-                String text = "주문이 완료되었습니다. 주문번호는"+ TimerCount.ORDER_COUNT +"입니다.";
+                String text = "주문이 완료되었습니다. 주문번호는"+ TimerCount.ORDER_COUNT +"번입니다.";
                 Locale locale = Locale.getDefault();
                 tts.setLanguage(locale);
                 tts.speak(text, TextToSpeech.QUEUE_FLUSH, null, "id1");
@@ -42,7 +42,7 @@ public class FinishActivity extends AppCompatActivity {
                         startActivity(intent);
                         finish();
                     }
-                }, 7000);// 7초 정도 딜레이를 준 후 반응 없으면 main으로 돌아감
+                }, 5000);// 5초 정도 딜레이를 준 후 반응 없으면 main으로 돌아감
             }
         });
 

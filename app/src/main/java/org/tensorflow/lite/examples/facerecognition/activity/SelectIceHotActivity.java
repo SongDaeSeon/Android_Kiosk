@@ -1,7 +1,5 @@
 package org.tensorflow.lite.examples.facerecognition.activity;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,6 +8,8 @@ import android.os.Vibrator;
 import android.speech.tts.TextToSpeech;
 import android.view.View;
 import android.widget.Button;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import org.tensorflow.lite.examples.facerecognition.R;
 import org.tensorflow.lite.examples.facerecognition.TimerCount;
@@ -134,6 +134,7 @@ public class SelectIceHotActivity extends AppCompatActivity {
         if (tts != null) {
             tts.stop();
             tts.shutdown();
+            tts = null;
         }
 
         //일정 시간 터치 없을시 자동 처음 화면 돌아가기 위한 코드

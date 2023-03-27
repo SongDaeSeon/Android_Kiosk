@@ -1,15 +1,15 @@
 package org.tensorflow.lite.examples.facerecognition.activity;
 
+import android.content.Intent;
+import android.os.Bundle;
+import android.os.CountDownTimer;
+import android.view.View;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.ViewCompat;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 import androidx.viewpager2.widget.ViewPager2;
-
-import android.content.Intent;
-import android.os.Bundle;
-import android.os.CountDownTimer;
-import android.view.View;
 
 import org.tensorflow.lite.examples.facerecognition.Adapter.RecommendAdapter;
 import org.tensorflow.lite.examples.facerecognition.R;
@@ -115,6 +115,8 @@ public class RecommendActivity extends AppCompatActivity {
 
         super.onPause();
     }
+
+
 
     @Override
     protected void onDestroy() {

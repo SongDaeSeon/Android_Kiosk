@@ -10,10 +10,11 @@ public class TimerCount {
     public static final int COUNT_DOWN_INTERVAL = 1000;//1초
     public static final int COUNT = 119 * 1000;
     public static int ORDER_COUNT = 1;
-    public static final String IP = "192.168.0.9";
+    public static final String IP = "10.200.22.81";
     public static String starttime;
     public static String R_COUNT;
     public static String NUM_PAGE;
+    public static double AMP = 12.0;
 
     public static ArrayList<HashMap<String, String>> DELETE_MENU_ARRAY =  new ArrayList<HashMap<String, String>>();
     public static ArrayList<HashMap<String, String>> RECOMMEND_MENU_ARRAY =  new ArrayList<HashMap<String, String>>();

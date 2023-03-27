@@ -97,11 +97,20 @@ public class AmericanoFragment extends Fragment {
                 americane_btn.setEnabled(true);
                 Locale locale = Locale.getDefault();
                 tts.setLanguage(locale);
-
                 tts.speak(text, TextToSpeech.QUEUE_FLUSH, null, "id1");
 
             }
         });
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        if(tts != null){
+            tts.stop();
+            tts.shutdown();
+            tts = null;
+        }
     }
 
     @Override

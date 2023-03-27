@@ -3,17 +3,14 @@ package org.tensorflow.lite.examples.facerecognition.activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
-import android.media.AudioManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Vibrator;
 import android.speech.tts.TextToSpeech;
-import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -45,9 +42,6 @@ public class SelectWhereActivity extends AppCompatActivity {
     private static final String TAG_PRICE = "m_price";
     String mJsonString;
 
-    //    //테스트
-    TextView textView;
-
     ArrayList<HashMap<String, String>> mArrayList;
 
     private TextToSpeech tts;
@@ -74,10 +68,6 @@ public class SelectWhereActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_where);
-
-        //        //테스트
-        textView = findViewById(R.id.ex);
-        textView.setMovementMethod(new ScrollingMovementMethod());
 
         mArrayList = new ArrayList<>();
 
@@ -189,6 +179,17 @@ public class SelectWhereActivity extends AppCompatActivity {
             }
         };
     }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        if(tts != null){
+            tts.stop();
+            tts.shutdown();
+            tts = null;
+        }
+    }
+
     @Override
     protected void onDestroy() {
         if (tts != null) {
@@ -318,12 +319,10 @@ public class SelectWhereActivity extends AppCompatActivity {
 
             if (result == null){
 
-//                mTextViewResult.setText(errorString);
             }
             else {
 
                 mJsonString = result;
-//                textView.setText(result);
                 showRecommend();
             }
         }

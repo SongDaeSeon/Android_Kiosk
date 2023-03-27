@@ -173,6 +173,16 @@ public class RecommendMenuFragment extends Fragment {
     }
 
     @Override
+    public void onPause() {
+        super.onPause();
+        if(tts != null){
+            tts.stop();
+            tts.shutdown();
+            tts = null;
+        }
+    }
+
+    @Override
     public void onDestroy() {
         super.onDestroy();
 

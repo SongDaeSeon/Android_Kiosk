@@ -1,7 +1,5 @@
 package org.tensorflow.lite.examples.facerecognition.activity;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -10,11 +8,11 @@ import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Vibrator;
 import android.speech.tts.TextToSpeech;
-import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -39,8 +37,6 @@ public class CheckActivity extends AppCompatActivity {
 
     ArrayList<HashMap<String, String>> mArrayList;
 
-    TextView textView;
-
     private static final String TAG_WHERE = "r_where";
     private static final String TAG_TEMP = "m_temp";
     private static final String TAG_NAME = "m_name";
@@ -64,10 +60,6 @@ public class CheckActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_check);
-
-//        //        //테스트
-        textView = findViewById(R.id.ex);
-        textView.setMovementMethod(new ScrollingMovementMethod());
 
 //        textView.setText(TimerCount.RECOMMEND_MENU_ARRAY.get(0).get(TAG_NAME));
 
@@ -100,7 +92,7 @@ public class CheckActivity extends AppCompatActivity {
                 }
 
                 text = mArrayList.get(0).get(TAG_WHERE) + "이고 총가격은" + mArrayList.get(0).get(TAG_REAL_TOTAL)+
-                        "원. 결제를 원하면 화면의 상단을, 취소를 원하면 하단을 클릭해주세요.";
+                        "원입니다. 결제를 원하면 화면의 상단을, 취소를 원하면 하단을 클릭해주세요.";
                 tts.speak(text, TextToSpeech.QUEUE_ADD, null, "id1");
 
             }
@@ -125,7 +117,7 @@ public class CheckActivity extends AppCompatActivity {
                 }
 
                 String text = mArrayList.get(0).get(TAG_WHERE) + "이고 총가격은" + mArrayList.get(0).get(TAG_REAL_TOTAL)+
-                        "원. 결제를 원하면 화면의 상단을, 취소를 원하면 하단을 클릭해주세요.";
+                        "원입니다. 결제를 원하면 화면의 상단을, 취소를 원하면 하단을 클릭해주세요.";
                 tts.speak(text, TextToSpeech.QUEUE_ADD, null, "id1");
             }
         });
@@ -244,7 +236,6 @@ public class CheckActivity extends AppCompatActivity {
             else {
 
                 mJsonString = result;
-                textView.setText(result);
                 showResult();
 
             }

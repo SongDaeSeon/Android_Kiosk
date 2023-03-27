@@ -1,7 +1,5 @@
 package org.tensorflow.lite.examples.facerecognition.activity;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -10,11 +8,11 @@ import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Vibrator;
 import android.speech.tts.TextToSpeech;
-import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -53,9 +51,6 @@ public class BasketActivity extends AppCompatActivity {
     private int count = TimerCount.COUNT;
     private CountDownTimer countDownTimer;
 
-    //테스트
-    TextView textView;
-
     private Vibrator vibrator;
 
     @Override
@@ -69,10 +64,6 @@ public class BasketActivity extends AppCompatActivity {
         countDownTimer.start();
 
         mArrayList = new ArrayList<>();
-
-//        //테스트
-        textView = findViewById(R.id.ex);
-        textView.setMovementMethod(new ScrollingMovementMethod());
 
         //Select.Basket 쿼리 실행
         SelectBasket task = new SelectBasket();
@@ -91,6 +82,13 @@ public class BasketActivity extends AppCompatActivity {
                     String text2 = mArrayList.get(i).get(TAG_TEMP) + mArrayList.get(i).get(TAG_NAME)
                             + Integer.valueOf(mArrayList.get(i).get(TAG_COUNT)) + "개" + mArrayList.get(i).get(TAG_TOTAL) + "원";
                     tts.speak(text2, TextToSpeech.QUEUE_ADD, null, null);
+
+                    if(i == mArrayList.size()-1){
+                        String text3 = mArrayList.get(i).get(TAG_TEMP) + mArrayList.get(i).get(TAG_NAME)
+                                + Integer.valueOf(mArrayList.get(i).get(TAG_COUNT)) + "개" + mArrayList.get(i).get(TAG_TOTAL) + "원입니다." +
+                                "확인하였으면 화면을 길게 눌러주세요 ";
+                        tts.speak(text3, TextToSpeech.QUEUE_ADD, null, null);
+                    }
                 }
             }
         });
@@ -103,11 +101,12 @@ public class BasketActivity extends AppCompatActivity {
                 vibrator = (Vibrator)getSystemService(Context.VIBRATOR_SERVICE);
                 vibrator.vibrate(100); // 0.1초간 진동
 
-                Locale locale = Locale.getDefault();
+                Locale locale = Locale.KOREA;
                 tts.setLanguage(locale);
                 for (int i = 0; i < mArrayList.size(); i++) {
                     String text2 = mArrayList.get(i).get(TAG_TEMP) + mArrayList.get(i).get(TAG_NAME)
-                            + Integer.valueOf(mArrayList.get(i).get(TAG_COUNT)) + "개" + mArrayList.get(i).get(TAG_TOTAL) + "원";
+                            + Integer.valueOf(mArrayList.get(i).get(TAG_COUNT)) + "개" + mArrayList.get(i).get(TAG_TOTAL) + "원입니다." +
+                            "확인하였으면 화면을 길게 눌러주세요.";
                     tts.speak(text2, TextToSpeech.QUEUE_ADD, null, null);
                 }
 
@@ -139,6 +138,16 @@ public class BasketActivity extends AppCompatActivity {
 
             }
         };
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        if(tts != null){
+            tts.stop();
+            tts.shutdown();
+            tts = null;
+        }
     }
 
     @Override
@@ -187,7 +196,6 @@ public class BasketActivity extends AppCompatActivity {
             else {
 
                 mJsonString = result;
-                textView.setText(result);
                 showResult();
 
             }

@@ -143,10 +143,10 @@ public class BlankFragment extends Fragment {
                 String text;
 
                 if(temp.equals("없음")) {
-                    text = "좌우로 화면을 넘겨 메뉴를 확인한 후 길게 눌러 삭제해주세요. 현재 화면은" + menu + price+ "입니다.";
+                    text = "좌우로 화면을 넘겨 메뉴를 확인한 후 길게 눌러 삭제해주세요. 현재 화면은" + menu + price+ "원입니다.";
 
                 }else{
-                    text = "좌우로 화면을 넘겨 메뉴를 확인한 후 길게 눌러 삭제해주세요. 현재 화면은" + temp + menu + price+ "입니다.";
+                    text = "좌우로 화면을 넘겨 메뉴를 확인한 후 길게 눌러 삭제해주세요. 현재 화면은" + temp + menu + price+ "원입니다.";
 
                 }
                 tts.speak(text, TextToSpeech.QUEUE_FLUSH, null, "id1");
@@ -212,16 +212,26 @@ public class BlankFragment extends Fragment {
                 String text;
 
                 if(temp.equals("없음")) {
-                    text = "좌우로 화면을 넘겨 메뉴를 확인한 후 길게 눌러 삭제해주세요. 현재 화면은" + menu + price+ "입니다.";
+                    text = "좌우로 화면을 넘겨 메뉴를 확인한 후 길게 눌러 삭제해주세요. 현재 화면은" + menu + price+ "원입니다.";
 
                 }else{
-                    text = "좌우로 화면을 넘겨 메뉴를 확인한 후 길게 눌러 삭제해주세요. 현재 화면은" + temp + menu + price+ "입니다.";
+                    text = "좌우로 화면을 넘겨 메뉴를 확인한 후 길게 눌러 삭제해주세요. 현재 화면은" + temp + menu + price+ "원입니다.";
 
                 }
                 tts.speak(text, TextToSpeech.QUEUE_FLUSH, null, "id1");
 
             }
         });
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        if(tts != null){
+            tts.stop();
+            tts.shutdown();
+            tts = null;
+        }
     }
 
     @Override

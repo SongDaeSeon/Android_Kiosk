@@ -13,7 +13,7 @@
         android:layout_width="fill_parent"
         android:layout_height="0px"
         android:layout_weight="1"
-        android:text="메뉴 가격 등등 나타내기"
+        android:text="주문내역"
         android:background="@color/yellow"
         android:textColor="@color/black"
         android:textStyle="bold"
@@ -22,10 +22,6 @@
         >
     </Button>
 
-    <TextView
-        android:layout_width="250dp"
-        android:layout_height="100dp"
-        android:id="@+id/ex"/>
 
 
 </LinearLayout>
