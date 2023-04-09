@@ -71,21 +71,21 @@ public class SmoothieActivity extends AppCompatActivity {
         final float pageMargin= getResources().getDimensionPixelOffset(R.dimen.pageMargin);
         final float pageOffset = getResources().getDimensionPixelOffset(R.dimen.offset);
 
-        mPager.setPageTransformer(new ViewPager2.PageTransformer() {
-            @Override
-            public void transformPage(@NonNull View page, float position) {
-                float myOffset = position * -(2 * pageOffset + pageMargin);
-                if (mPager.getOrientation() == ViewPager2.ORIENTATION_HORIZONTAL) {
-                    if (ViewCompat.getLayoutDirection(mPager) == ViewCompat.LAYOUT_DIRECTION_RTL) {
-                        page.setTranslationX(-myOffset);
-                    } else {
-                        page.setTranslationX(myOffset);
-                    }
-                } else {
-                    page.setTranslationY(myOffset);
-                }
-            }
-        });
+//        mPager.setPageTransformer(new ViewPager2.PageTransformer() {
+//            @Override
+//            public void transformPage(@NonNull View page, float position) {
+//                float myOffset = position * -(2 * pageOffset + pageMargin);
+//                if (mPager.getOrientation() == ViewPager2.ORIENTATION_HORIZONTAL) {
+//                    if (ViewCompat.getLayoutDirection(mPager) == ViewCompat.LAYOUT_DIRECTION_RTL) {
+//                        page.setTranslationX(-myOffset);
+//                    } else {
+//                        page.setTranslationX(myOffset);
+//                    }
+//                } else {
+//                    page.setTranslationY(myOffset);
+//                }
+//            }
+//        });
     }
     public void countDownTimer(){
         countDownTimer = new CountDownTimer(TimerCount.MILLISINFUTURE, TimerCount.COUNT_DOWN_INTERVAL) {

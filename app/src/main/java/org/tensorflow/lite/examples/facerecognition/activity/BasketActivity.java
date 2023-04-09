@@ -84,9 +84,7 @@ public class BasketActivity extends AppCompatActivity {
                     tts.speak(text2, TextToSpeech.QUEUE_ADD, null, null);
 
                     if(i == mArrayList.size()-1){
-                        String text3 = mArrayList.get(i).get(TAG_TEMP) + mArrayList.get(i).get(TAG_NAME)
-                                + Integer.valueOf(mArrayList.get(i).get(TAG_COUNT)) + "개" + mArrayList.get(i).get(TAG_TOTAL) + "원입니다." +
-                                "확인하였으면 화면을 길게 눌러주세요 ";
+                        String text3 = "확인하였으면 화면을 길게 눌러주세요 ";
                         tts.speak(text3, TextToSpeech.QUEUE_ADD, null, null);
                     }
                 }

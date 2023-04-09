@@ -14,7 +14,7 @@
         android:layout_weight="1"
         android:text="초코마카롱\n1800원"
         android:lineSpacingExtra="@dimen/linespace"
-        android:background="@color/yellow"
+        android:background="@drawable/button_bg"
         android:textColor="@color/black"
         android:textStyle="bold"
         android:fontFamily="@font/cafe"

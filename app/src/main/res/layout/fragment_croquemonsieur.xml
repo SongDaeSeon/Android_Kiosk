@@ -14,7 +14,7 @@
         android:layout_weight="1"
         android:text="크로크무슈\n3800원"
         android:lineSpacingExtra="@dimen/linespace"
-        android:background="@color/yellow"
+        android:background="@drawable/button_bg"
         android:textColor="@color/black"
         android:textStyle="bold"
         android:fontFamily="@font/cafe"

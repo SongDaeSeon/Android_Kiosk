@@ -14,7 +14,7 @@
         android:layout_weight="1"
         android:text="요거트\n스무디\n3300원"
         android:lineSpacingExtra="@dimen/linespace"
-        android:background="@color/yellow"
+        android:background="@drawable/button_bg"
         android:textColor="@color/black"
         android:textStyle="bold"
         android:fontFamily="@font/cafe"

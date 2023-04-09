@@ -9,6 +9,7 @@ import android.os.CountDownTimer;
 import android.os.Handler;
 import android.os.Vibrator;
 import android.speech.tts.TextToSpeech;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
@@ -76,6 +77,9 @@ public class StartActivity extends AppCompatActivity {
                     amp = Math.ceil(amp);
 
                     TimerCount.AMP = amp;
+
+                    Log.d("Decibel", String.valueOf(amp));
+                    Log.d("what is real sound ", String.valueOf(amp/1500));
 
                     AudioManager audioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
                     audioManager.setStreamVolume(AudioManager.STREAM_MUSIC, ((int) amp / 1500) + 10, 0);

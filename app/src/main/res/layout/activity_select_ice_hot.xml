@@ -2,14 +2,15 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:layout_margin="@dimen/pageMargin">
+    android:layout_margin="@dimen/pageMargin"
+    android:background="@color/white">
 
     <Button android:text="아이스"
         android:id="@+id/button_ice"
         android:layout_width="fill_parent"
         android:layout_height="0px"
         android:layout_weight="1"
-        android:background="@color/yellow"
+        android:background="@drawable/button_bg"
         android:textColor="@color/black"
         android:textStyle="bold"
         android:fontFamily="@font/cafe"
@@ -21,7 +22,7 @@
         android:layout_width="fill_parent"
         android:layout_height="0px"
         android:layout_weight="1"
-        android:background="@color/purple"
+        android:background="@drawable/button_pg"
         android:textColor="@color/white"
         android:textStyle="bold"
         android:fontFamily="@font/cafe"

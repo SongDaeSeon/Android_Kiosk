@@ -14,7 +14,7 @@
         android:layout_weight="1"
         android:text="복숭아\n아이스티\n2000원"
         android:lineSpacingExtra="@dimen/linespace"
-        android:background="@color/yellow"
+        android:background="@drawable/button_bg"
         android:textColor="@color/black"
         android:textStyle="bold"
         android:fontFamily="@font/cafe"
