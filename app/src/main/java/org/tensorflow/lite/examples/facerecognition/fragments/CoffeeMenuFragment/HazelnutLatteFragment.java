@@ -69,19 +69,19 @@ public class HazelnutLatteFragment extends Fragment {
         SpannableString spannableString = new SpannableString(content);
 
         // 2
-        String word = "2800원";
+        String word = "커피";
         int start = content.indexOf(word);
         int end = start + word.length();
 
         // 보라색 컬러 들고오기
-        int color = getActivity().getColor(R.color.purple);
+        int color = getActivity().getColor(R.color.gray);
         String purple = "#" + Integer.toHexString(color);
 
 
         // 3
         spannableString.setSpan(new ForegroundColorSpan(Color.parseColor(purple)), start, end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
         //spannableString.setSpan(new StyleSpan(Typeface.BOLD), start, end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-        spannableString.setSpan(new RelativeSizeSpan(0.95f), start, end, SpannableString.SPAN_EXCLUSIVE_EXCLUSIVE);
+        spannableString.setSpan(new RelativeSizeSpan(0.55f), start, end, SpannableString.SPAN_EXCLUSIVE_EXCLUSIVE);
 
         // 4
         hazzelnutlatte_btn.setText(spannableString);

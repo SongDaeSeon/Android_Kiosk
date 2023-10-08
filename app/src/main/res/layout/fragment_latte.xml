@@ -46,7 +46,7 @@
         android:textColor="#3836B8"
         android:text="라떼"
         android:background="@drawable/button_yellow"
-        android:textSize="90sp"
+        android:textSize="@dimen/default_size"
         android:bufferType="spannable">
     </Button>
 

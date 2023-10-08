@@ -2,7 +2,7 @@
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:drawable="@drawable/price_1800"
-        android:height="200dp"
-        android:width="200dp"
+        android:height="90dp"
+        android:width="160dp"
         />
 </layer-list>
