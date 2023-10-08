@@ -46,7 +46,7 @@ android:orientation="vertical">
     android:text="커피\n헤이즐넛"
     android:paddingTop="105dp"
     android:background="@drawable/button_yellow"
-    android:textSize="90sp"
+    android:textSize="@dimen/default_size"
     android:drawableBottom="@drawable/price_2000_img"
     android:bufferType="spannable">
 </Button>
