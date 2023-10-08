@@ -31,7 +31,7 @@ public class TeaFragment extends Fragment {
 
 
 
-        button6 = v.findViewById(R.id.button6);
+        button6 = v.findViewById(R.id.tea);
         button6.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

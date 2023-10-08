@@ -31,7 +31,7 @@ public class RecommendFragment extends Fragment {
 
         View v =  (ViewGroup) inflater.inflate(R.layout.fragment_recommend, container, false);;
 
-        recommend_btn = v.findViewById(R.id.recommend_btn);
+        recommend_btn = v.findViewById(R.id.recommend);
         recommend_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

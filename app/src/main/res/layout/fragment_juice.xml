@@ -1,20 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:layout_margin="@dimen/pageMargin">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/university"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/cafe"
+        android:text="창원대학교 카페"
+        android:textColor="@color/gray"
+        android:textSize="30dp" />
+
+    <TextView
+        android:id="@+id/kiosk"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/cafe"
+        android:text="무인주문단말기"
+        android:textColor="#3836B8"
+        android:textSize="40dp" />
 
     <Button
-        android:id="@+id/button8"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_weight="1"
-        android:text="주스"
-        android:background="@drawable/button_bg"
-        android:textColor="@color/black"
-        android:textStyle="bold"
+        android:id="@+id/juice"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingTop="200dp"
+        android:paddingBottom="20dp"
+        android:drawableBottom="@drawable/juice_img"
         android:fontFamily="@font/cafe"
-        android:textSize="@dimen/default_size">
+        android:gravity="center"
+        android:textColor="#3836B8"
+        android:text="쥬스"
+        android:background="@drawable/button_yellow"
+        android:textSize="90sp"
+        android:bufferType="spannable">
     </Button>
 
 </LinearLayout>

@@ -1,22 +1,55 @@
-<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:layout_margin="@dimen/pageMargin"
-    android:background="@color/white">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/university"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/cafe"
+        android:text="창원대학교 카페"
+        android:textColor="@color/gray"
+        android:textSize="30dp" />
+
+    <TextView
+        android:id="@+id/kiosk"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/cafe"
+        android:text="무인주문단말기"
+        android:textColor="#3836B8"
+        android:textSize="40dp" />
 
     <Button
         android:id="@+id/button0"
-        android:layout_width="fill_parent"
-        android:layout_height="0px"
-        android:layout_weight="1"
-        android:text="화면을\n터치\n해주세요"
-        android:background="@drawable/button_bg"
-        android:textColor="@color/black"
-        android:textStyle="bold"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingTop="35dp"
+        android:paddingLeft="35dp"
+        android:paddingBottom="20dp"
         android:fontFamily="@font/cafe"
+        android:gravity="start"
+        android:textColor="#3836B8"
+        android:text="화면을\n터치해\n주세요"
+        android:background="@drawable/button_yellow"
         android:textSize="@dimen/default_size"
->
-    </Button>
+        android:bufferType="spannable"
+        android:drawableBottom="@drawable/touch_img"
+
+        />
+
 
 </LinearLayout>

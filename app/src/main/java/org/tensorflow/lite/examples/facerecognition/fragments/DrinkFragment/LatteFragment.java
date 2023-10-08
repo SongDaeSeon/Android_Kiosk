@@ -31,7 +31,7 @@ public class LatteFragment extends Fragment {
 
 
 
-        button4 = v.findViewById(R.id.button4);
+        button4 = v.findViewById(R.id.latte);
         button4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

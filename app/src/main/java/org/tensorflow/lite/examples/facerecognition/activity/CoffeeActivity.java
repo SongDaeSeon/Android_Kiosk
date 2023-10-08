@@ -7,9 +7,15 @@ import androidx.viewpager2.adapter.FragmentStateAdapter;
 import androidx.viewpager2.widget.ViewPager2;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.text.Spannable;
+import android.text.SpannableString;
+import android.text.style.ForegroundColorSpan;
+import android.text.style.RelativeSizeSpan;
 import android.view.View;
+import android.widget.TextView;
 
 import org.tensorflow.lite.examples.facerecognition.Adapter.CoffeeAdapter;
 import org.tensorflow.lite.examples.facerecognition.R;

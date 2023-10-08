@@ -30,7 +30,7 @@ public class AdeFragment extends Fragment {
         View v = (ViewGroup) inflater.inflate(
                 R.layout.fragment_ade, container, false);
 
-        button7 = v.findViewById(R.id.button7);
+        button7 = v.findViewById(R.id.ade);
 
         button7.setOnClickListener(new View.OnClickListener() {
             @Override

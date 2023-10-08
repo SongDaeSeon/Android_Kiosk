@@ -29,7 +29,7 @@ public class CoffeeFragment extends Fragment {
         View v = (ViewGroup) inflater.inflate(
                 R.layout.fragment_coffee, container, false);
 
-        button3 = v.findViewById(R.id.button3);
+        button3 = v.findViewById(R.id.coffee);
 
         button3.setOnClickListener(new View.OnClickListener() {
             @Override
