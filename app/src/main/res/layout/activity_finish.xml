@@ -39,7 +39,7 @@
         android:layout_marginBottom="20dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="결제 완료"
+        android:text="주문 완료"
         android:background="@drawable/button_yellow"
         android:textColor="#3836B8"
         android:textStyle="bold"
