@@ -29,6 +29,7 @@ public class AppleJuiceFragment extends Fragment {
     private Button apple_juice_btn;
     private Vibrator vibrator;
 
+    String text = "애플주스 3000원";
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -42,7 +43,7 @@ public class AppleJuiceFragment extends Fragment {
             public void onClick(View view) {
                 vibrator = (Vibrator) getActivity().getSystemService(Context.VIBRATOR_SERVICE);
                 vibrator.vibrate(100); // 0.1초간 진동
-                String text = "애플주스 3000원";
+
                 Locale locale = Locale.getDefault();
                 tts.setLanguage(locale);
                 tts.speak(text, TextToSpeech.QUEUE_FLUSH, null, "id1");
@@ -70,18 +71,18 @@ public class AppleJuiceFragment extends Fragment {
         SpannableString spannableString = new SpannableString(content);
 
         // 2
-        String word = "3000원";
+        String word = "주스";
         int start = content.indexOf(word);
         int end = start + word.length();
 
         // 보라색 컬러 들고오기
-        int color = getActivity().getColor(R.color.purple);
+        int color = getActivity().getColor(R.color.gray);
         String purple = "#" + Integer.toHexString(color);
 
         // 3
         spannableString.setSpan(new ForegroundColorSpan(Color.parseColor(purple)), start, end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
         //spannableString.setSpan(new StyleSpan(Typeface.BOLD), start, end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-        spannableString.setSpan(new RelativeSizeSpan(0.95f), start, end, SpannableString.SPAN_EXCLUSIVE_EXCLUSIVE);
+        spannableString.setSpan(new RelativeSizeSpan(0.55f), start, end, SpannableString.SPAN_EXCLUSIVE_EXCLUSIVE);
 
         // 4
         apple_juice_btn.setText(spannableString);

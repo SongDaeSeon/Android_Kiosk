@@ -1,25 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:orientation="vertical"
-    android:layout_margin="@dimen/pageMargin"
     tools:context=".fragments.DessertMenuFragment.ChocoTiramisuCakeFragment">
+
+    <TextView
+        android:id="@+id/university"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/cafe"
+        android:text="창원대학교 카페"
+        android:textColor="@color/gray"
+        android:textSize="30dp" />
+
+    <TextView
+        android:id="@+id/kiosk"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/cafe"
+        android:text="무인주문단말기"
+        android:textColor="#3836B8"
+        android:textSize="40dp" />
 
     <Button
         android:id="@+id/choco_tiramisu_cake_btn"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_weight="1"
-        android:text="초코\n티라미스\n조각케익\n2500원"
-        android:lineSpacingExtra="@dimen/linespace"
-        android:background="@drawable/button_bg"
-        android:textColor="@color/black"
-        android:textStyle="bold"
+        android:text="디저트\n초코\n티라미스\n조각케익"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingBottom="30dp"
+        android:drawablePadding="30dp"
         android:fontFamily="@font/cafe"
-        android:bufferType="spannable"
-        android:textSize="@dimen/default_size">
+        android:gravity="center"
+        android:textColor="#3836B8"
+        android:lineSpacingExtra="@dimen/linespace"
+        android:textStyle="bold"
+        android:textSize="@dimen/default_size"
+        android:paddingTop="105dp"
+        android:background="@drawable/button_yellow"
+        android:drawableBottom="@drawable/price_2500_img"
+        android:bufferType="spannable">
     </Button>
 
 </LinearLayout>

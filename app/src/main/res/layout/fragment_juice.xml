@@ -44,7 +44,7 @@
         android:fontFamily="@font/cafe"
         android:gravity="center"
         android:textColor="#3836B8"
-        android:text="쥬스"
+        android:text="주스"
         android:background="@drawable/button_yellow"
         android:textSize="@dimen/default_size"
         android:bufferType="spannable">

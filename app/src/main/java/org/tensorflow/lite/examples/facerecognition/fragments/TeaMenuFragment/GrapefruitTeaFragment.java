@@ -28,6 +28,7 @@ public class GrapefruitTeaFragment extends Fragment {
     private Button grapefruit_tea_btn;
     private Vibrator vibrator;
 
+    String text = "자몽차 2500원";
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -41,7 +42,7 @@ public class GrapefruitTeaFragment extends Fragment {
             public void onClick(View view) {
                 vibrator = (Vibrator) getActivity().getSystemService(Context.VIBRATOR_SERVICE);
                 vibrator.vibrate(100); // 0.1초간 진동
-                String text = "자몽차 2500원";
+
                 Locale locale = Locale.getDefault();
                 tts.setLanguage(locale);
                 tts.speak(text, TextToSpeech.QUEUE_FLUSH, null, "id1");
@@ -67,18 +68,18 @@ public class GrapefruitTeaFragment extends Fragment {
         SpannableString spannableString = new SpannableString(content);
 
         // 2
-        String word = "2500원";
+        String word = "티";
         int start = content.indexOf(word);
         int end = start + word.length();
 
         // 보라색 컬러 들고오기
-        int color = getActivity().getColor(R.color.purple);
+        int color = getActivity().getColor(R.color.gray);
         String purple = "#" + Integer.toHexString(color);
 
         // 3
         spannableString.setSpan(new ForegroundColorSpan(Color.parseColor(purple)), start, end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
         //spannableString.setSpan(new StyleSpan(Typeface.BOLD), start, end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-        spannableString.setSpan(new RelativeSizeSpan(0.95f), start, end, SpannableString.SPAN_EXCLUSIVE_EXCLUSIVE);
+        spannableString.setSpan(new RelativeSizeSpan(0.55f), start, end, SpannableString.SPAN_EXCLUSIVE_EXCLUSIVE);
 
         // 4
         grapefruit_tea_btn.setText(spannableString);
