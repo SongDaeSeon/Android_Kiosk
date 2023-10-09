@@ -39,13 +39,10 @@
         android:layout_marginBottom="20dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingBottom="30dp"
-        android:drawablePadding="30dp"
         android:fontFamily="@font/cafe"
         android:gravity="center"
         android:textColor="#3836B8"
         android:textSize="@dimen/default_size"
-        android:paddingTop="105dp"
         android:background="@drawable/button_yellow"
         android:bufferType="spannable">
     </Button>
